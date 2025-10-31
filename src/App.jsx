@@ -40,6 +40,7 @@ import DocumentationPage from './components/resources/DocumentationPage';
 import DocArticlePage from './components/resources/DocArticlePage';
 import CaseStudiesPage from './components/resources/CaseStudiesPage';
 import QuantumMLPage from './components/resources/QuantumMLPage';
+import { BlogPostPage } from './components/resources/BlogPostPage';
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
@@ -129,7 +130,7 @@ export default function App() {
             <Route path="/products/voice-assistant" element={<VoiceAssistantPage theme={theme} />} />
             <Route path="/products/call-agent" element={<VoiceCallAgentPage theme={theme} />} />
             <Route path="/products/platform" element={<DeveloperPlatformPage theme={theme} />} />
-            <Route path="/resources/blog" element={<BlogPage theme={theme} />} />
+            <Route path="/resources/blog/post" element={<BlogPostPage theme={theme} />} />
             <Route path="/resources/docs" element={<DocumentationPage theme={theme} />} />
             <Route path="/resources/case-studies" element={<CaseStudiesPage theme={theme} />} />
             <Route path="/resources/quantum-ml" element={<QuantumMLPage theme={theme} />} />

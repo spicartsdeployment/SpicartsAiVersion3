@@ -170,7 +170,7 @@ function BlogPage({ theme }) {
             }}
           >
             <div
-              onClick={() => onNavigate('/resources/blog')}
+              onClick={() => onNavigate('/resources/blog/post')}
               className="relative rounded-2xl overflow-hidden group cursor-pointer"
             >
               <ImageWithFallback
