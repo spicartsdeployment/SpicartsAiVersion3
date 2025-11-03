@@ -1,8 +1,18 @@
 import { motion } from 'motion/react';
 import { ArrowLeft, Calendar, Clock, User, Share2, Bookmark, Twitter, Linkedin, Facebook, Tag } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useNavigate } from 'react-router-dom';
+
 
 export function BlogPostPage({ theme, onNavigate }) {
+
+    const navigate = useNavigate();
+    const handleNavigate = (path) => {
+        navigate(path);
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    };
+
+
     const relatedPosts = [
         {
             title: 'The Future of Voice AI in Healthcare',
@@ -30,7 +40,7 @@ export function BlogPostPage({ theme, onNavigate }) {
             <div className="pt-24 pb-8 px-6">
                 <div className="max-w-[900px] mx-auto">
                     <button
-                        onClick={() => onNavigate('resources/blog')}
+                        onClick={() => handleNavigate('/blog')}
                         className={`flex items-center gap-2 hover:text-[#4deeea] transition-colors ${theme === 'dark' ? 'text-white/70' : 'text-black/70'
                             }`}
                         style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}

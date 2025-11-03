@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, ChevronDown, ChevronRight, Bot, Mic2, Sparkles, Eye, Atom, Zap, Wifi, Cpu, Globe, Smartphone, Code, FileText, Newspaper, BookOpen, Phone, Monitor } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logoImage from '../assets/images/logo-white.png';
+import { div } from 'motion/react-client';
 
 export function Navbar({ theme, toggleTheme }) {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ export function Navbar({ theme, toggleTheme }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [activeMobileSection, setActiveMobileSection] = useState(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,8 +76,13 @@ export function Navbar({ theme, toggleTheme }) {
     },
   ];
 
+  const navigatetoTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   const handleItemClick = (path) => {
     navigate(path);
+    navigatetoTop();
     setActiveDropdown(null);
     setActiveSubmenu(null);
     setMobileMenuOpen(false);
@@ -442,7 +450,9 @@ export function Navbar({ theme, toggleTheme }) {
                   onMouseLeave={() => hasSubmenu && setActiveSubmenu(null)}
                 >
                   <button
-                    onClick={() => handleItemClick(item.path)}
+                    onClick={() => {
+                      if (!hasSubmenu) handleItemClick(item.path);
+                    }}
                     className={`w-full text-left px-4 py-2.5 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
                       ? 'hover:bg-white/[0.04]'
                       : 'hover:bg-black/[0.04]'
@@ -513,7 +523,7 @@ export function Navbar({ theme, toggleTheme }) {
                           style={{ minWidth: '280px' }}
                         >
                           <div
-                            className="rounded-xl border overflow-hidden"
+                            className="rounded-xl border overflow-visible"
                             style={{
                               background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
                               borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
@@ -613,13 +623,13 @@ export function Navbar({ theme, toggleTheme }) {
           <div
             className="cursor-pointer flex items-center group"
             onClick={() => handleItemClick('/')}
-            style={{ marginLeft: "-40px" }}
+            style={{ marginLeft: "-80px" }}
           >
             <div
               className="relative transition-all duration-300 hover:scale-105"
               style={{
-                width: scrolled ? '280px' : '240px',
-                height: scrolled ? '72px' : '64px',
+                width: '240px',
+                height: '64px',
               }}
             >
               <img
@@ -634,7 +644,7 @@ export function Navbar({ theme, toggleTheme }) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Services Dropdown */}
             <div
               className="relative"
@@ -858,31 +868,80 @@ export function Navbar({ theme, toggleTheme }) {
               {/* Services */}
               <div className="mb-4">
                 <div
-                  className={`px-3 py-2 mb-1 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
+                  className={` w-full flex items-center justify-between px-3 py-2 mb-1 rounded-lg transistion-colors duration-200
+                     ${theme === 'dark' ? 'text-white/90 hover:text-[#4deeea] hover:bg-white/[0.04]' : 'text-black/90 hover:text-[#4deeea] hover:bg-black/[0.04]'}`}
                   style={{
-                    fontSize: '11px',
-                    fontWeight: 600,
+                    fontSize: '15px',
+                    fontWeight: 500,
                     fontFamily: 'Space Grotesk, sans-serif',
-                    textTransform: 'uppercase',
+                    // textTransform: 'uppercase',
                     letterSpacing: '0.5px',
                   }}
+                  onClick={() => setActiveMobileSection(activeMobileSection === "services" ? null : "services")}
                 >
                   Services
+                  <ChevronDown size={14} className={activeMobileSection === 'services' ? 'rotate-180' : ''} />
                 </div>
-                {servicesCategories.map((category) => (
-                  <div key={category.label} className="mb-3">
-                    <div
-                      className={`px-3 py-1 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}
-                      style={{
-                        fontSize: '13px',
-                        fontWeight: 500,
-                        fontFamily: 'Space Grotesk, sans-serif',
-                      }}
-                    >
-                      {category.label}
+                {activeMobileSection === "services" && (<>
+                  {servicesCategories.map((category) => (
+                    <div key={category.label} className="mb-3">
+                      <div
+                        className={`px-3 py-1 ${theme === 'dark' ? 'text-white/70' : 'text-black/70'}`}
+                        style={{
+                          fontSize: '13px',
+                          fontWeight: 500,
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        {category.label}
+                      </div>
+                      <div className="space-y-0.5">
+                        {category.items.map((item) => {
+                          const Icon = item.icon;
+                          return (
+                            <button
+                              key={item.path}
+                              onClick={() => handleItemClick(item.path)}
+                              className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ${theme === 'dark'
+                                ? 'text-white/70 hover:bg-white/[0.04]'
+                                : 'text-black/70 hover:bg-black/[0.04]'
+                                }`}
+                            >
+                              <Icon size={14} className="text-[#4deeea]" />
+                              <span className="text-sm" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                                {item.label}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <div className="space-y-0.5">
-                      {category.items.map((item) => {
+                  ))}
+                </>)}
+              </div>
+
+              {/* Products */}
+              <div className="mb-4">
+                <div
+                  className={` w-full flex items-center justify-between px-3 py-2 mb-1 rounded-lg transistion-colors duration-200
+                     ${theme === 'dark' ? 'text-white/90 hover:text-[#4deeea] hover:bg-white/[0.04]' : 'text-black/90 hover:text-[#4deeea] hover:bg-black/[0.04]'}`}
+
+                  style={{
+                    fontSize: '15px',
+                    fontWeight: 500,
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    // textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                  }}
+                  onClick={() => setActiveMobileSection(activeMobileSection === "products" ? null : "products")}
+                >
+                  Products
+                  <ChevronDown size={14} className={activeMobileSection === 'products' ? 'rotate-180' : ''} />
+                </div>
+                <div className="space-y-0.5">
+                  {activeMobileSection === "products" && (
+                    <>
+                      {productsItems.map((item) => {
                         const Icon = item.icon;
                         return (
                           <button
@@ -900,125 +959,96 @@ export function Navbar({ theme, toggleTheme }) {
                           </button>
                         );
                       })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Products */}
-              <div className="mb-4">
-                <div
-                  className={`px-3 py-2 mb-1 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    fontFamily: 'Space Grotesk, sans-serif',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                  }}
-                >
-                  Products
-                </div>
-                <div className="space-y-0.5">
-                  {productsItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <button
-                        key={item.path}
-                        onClick={() => handleItemClick(item.path)}
-                        className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ${theme === 'dark'
-                          ? 'text-white/70 hover:bg-white/[0.04]'
-                          : 'text-black/70 hover:bg-black/[0.04]'
-                          }`}
-                      >
-                        <Icon size={14} className="text-[#4deeea]" />
-                        <span className="text-sm" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                          {item.label}
-                        </span>
-                      </button>
-                    );
-                  })}
+                    </>)}
                 </div>
               </div>
 
               {/* Resources */}
               <div className="mb-4">
                 <div
-                  className={`px-3 py-2 mb-1 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
+                  className={` w-full flex items-center justify-between px-3 py-2 mb-1 rounded-lg transistion-colors duration-200
+                     ${theme === 'dark' ? 'text-white/90 hover:text-[#4deeea] hover:bg-white/[0.04]' : 'text-black/90 hover:text-[#4deeea] hover:bg-black/[0.04]'}`}
+
                   style={{
-                    fontSize: '11px',
-                    fontWeight: 600,
+                    fontSize: '15px',
+                    fontWeight: 500,
                     fontFamily: 'Space Grotesk, sans-serif',
-                    textTransform: 'uppercase',
+                    // textTransform: 'uppercase',
                     letterSpacing: '0.5px',
                   }}
+                  onClick={() => setActiveMobileSection(activeMobileSection === "resources" ? null : "resources")}
                 >
                   Resources
+                  <ChevronDown size={14} className={activeMobileSection === 'resources' ? 'rotate-180' : ''} />
                 </div>
                 <div className="space-y-0.5">
-                  {resourcesItems.map((item) => {
-                    const Icon = item.icon;
-                    const hasSubmenu = item.submenu && item.submenu.length > 0;
+                  {activeMobileSection === "resources" && (<>
+                    {resourcesItems.map((item) => {
+                      const Icon = item.icon;
+                      const hasSubmenu = item.submenu && item.submenu.length > 0;
 
-                    return (
-                      <div key={item.path}>
-                        <button
-                          onClick={() => !hasSubmenu && handleItemClick(item.path)}
-                          className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ${theme === 'dark'
-                            ? 'text-white/70 hover:bg-white/[0.04]'
-                            : 'text-black/70 hover:bg-black/[0.04]'
-                            }`}
-                        >
-                          <Icon size={14} className="text-[#4deeea]" />
-                          <span className="text-sm flex-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                            {item.label}
-                          </span>
-                        </button>
+                      return (
+                        <div key={item.path}>
+                          <button
+                            onClick={() => !hasSubmenu && handleItemClick(item.path)}
+                            className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ${theme === 'dark'
+                              ? 'text-white/70 hover:bg-white/[0.04]'
+                              : 'text-black/70 hover:bg-black/[0.04]'
+                              }`}
+                          >
+                            <Icon size={14} className="text-[#4deeea]" />
+                            <span className="text-sm flex-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                              {item.label}
+                            </span>
+                          </button>
 
-                        {/* Submenu for Research & Development */}
-                        {hasSubmenu && item.submenu && item.submenu.map((subitem) => {
-                          const SubIcon = subitem.icon;
-                          return (
-                            <button
-                              key={subitem.path}
-                              onClick={() => handleItemClick(subitem.path)}
-                              className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ml-6 ${theme === 'dark'
-                                ? 'text-white/60 hover:bg-white/[0.04]'
-                                : 'text-black/60 hover:bg-black/[0.04]'
-                                }`}
-                            >
-                              <SubIcon size={12} className="text-[#4deeea]" />
-                              <span className="text-xs" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                                {subitem.label}
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
+                          {/* Submenu for Research & Development */}
+                          {hasSubmenu && item.submenu && item.submenu.map((subitem) => {
+                            const SubIcon = subitem.icon;
+                            return (
+                              <button
+                                key={subitem.path}
+                                onClick={() => handleItemClick(subitem.path)}
+                                className={`w-full text-left px-3 py-2 rounded-lg hover:text-[#4deeea] flex items-center gap-3 ml-6 ${theme === 'dark'
+                                  ? 'text-white/60 hover:bg-white/[0.04]'
+                                  : 'text-black/60 hover:bg-black/[0.04]'
+                                  }`}
+                              >
+                                <SubIcon size={12} className="text-[#4deeea]" />
+                                <span className="text-xs" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                                  {subitem.label}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      );
+                    })}
+                  </>)}
                 </div>
               </div>
 
               {/* Other nav items */}
               {['Pricing', 'About'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => handleItemClick(`/${item.toLowerCase()}`)}
-                  className={`w-full px-3 py-2 rounded-lg text-left hover:text-[#4deeea] ${theme === 'dark'
-                    ? 'text-white/90 hover:bg-white/[0.04]'
-                    : 'text-black/90 hover:bg-black/[0.04]'
-                    }`}
-                  style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}
-                >
-                  {item}
-                </button>
+                <div className='mb-4' key={item}>
+                  <button
+
+                    onClick={() => handleItemClick(`/${item.toLowerCase()}`)}
+                    className={`w-full px-3 py-2 rounded-lg text-left hover:text-[#4deeea] ${theme === 'dark'
+                      ? 'text-white/90 hover:bg-white/[0.04]'
+                      : 'text-black/90 hover:bg-black/[0.04]'
+                      }`}
+                    style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}
+                  >
+                    {item}
+                  </button>
+                </div>
               ))}
 
               <div className="pt-3 space-y-2 border-t mt-2" style={{
                 borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'
               }}>
-                <button
+                {/* <button
                   onClick={() => handleItemClick('/login')}
                   className={`w-full px-3 py-2 rounded-lg text-left ${theme === 'dark'
                     ? 'text-white/90 hover:bg-white/[0.04]'
@@ -1027,7 +1057,7 @@ export function Navbar({ theme, toggleTheme }) {
                   style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}
                 >
                   Login
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleItemClick('/demo')}
                   className="w-full px-3 py-2 rounded-lg text-black"

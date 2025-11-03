@@ -12,6 +12,8 @@ export function RequestDemoPage({ theme, onNavigate }) {
         message: '',
     });
 
+
+
     const [focusedField, setFocusedField] = useState(null);
 
     const handleSubmit = (e) => {
@@ -210,7 +212,7 @@ export function RequestDemoPage({ theme, onNavigate }) {
                                                         ? 'bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:bg-white/10'
                                                         : 'bg-white border border-black/10 text-black placeholder-gray-400 focus:bg-gray-50'
                                                         }`}
-                                                    placeholder="+1 (555) 000-0000"
+                                                    placeholder="+91 999-999-9999"
                                                 />
                                             </div>
                                         </div>
@@ -232,15 +234,18 @@ export function RequestDemoPage({ theme, onNavigate }) {
                                                 ? 'bg-white/5 border border-white/10 text-white focus:bg-white/10'
                                                 : 'bg-white border border-black/10 text-black focus:bg-gray-50'
                                                 }`}
+
+                                            style={theme !== 'dark' ? { color: 'black' } : {}}
+
                                         >
-                                            <option value="">Select an option</option>
-                                            <option value="voice-ai">Voice AI</option>
-                                            <option value="ai-agents">AI Agents</option>
-                                            <option value="generative-ai">Generative AI</option>
-                                            <option value="vision-ai">Vision AI</option>
-                                            <option value="robotics">Robotics & Automation</option>
-                                            <option value="iot">IoT Solutions</option>
-                                            <option value="custom">Custom Development</option>
+                                            <option value="" style={{ color: "black" }}>Select an option</option>
+                                            <option value="voice-ai" style={{ color: "black" }}>Voice AI</option>
+                                            <option value="ai-agents" style={{ color: "black" }}>AI Agents</option>
+                                            <option value="generative-ai" style={{ color: "black" }}>Generative AI</option>
+                                            <option value="vision-ai" style={{ color: "black" }}>Vision AI</option>
+                                            <option value="robotics" style={{ color: "black" }}>Robotics & Automation</option>
+                                            <option value="iot" style={{ color: "black" }}>IoT Solutions</option>
+                                            <option value="custom" style={{ color: "black" }}>Custom Development</option>
                                         </select>
                                     </div>
 

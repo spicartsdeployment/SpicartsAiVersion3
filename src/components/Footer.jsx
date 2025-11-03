@@ -1,10 +1,18 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Youtube, Send, Instagram } from 'lucide-react';
 import { useState } from 'react';
 import { motion } from 'motion/react';
+import { useNavigate, Link } from 'react-router-dom';
+import "./Footer.css"
 
 export function Footer({ theme, onNavigate }) {
     const [email, setEmail] = useState('');
     const currentYear = new Date().getFullYear();
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const handleNewsletterSubmit = (e) => {
         e.preventDefault();
@@ -105,13 +113,18 @@ export function Footer({ theme, onNavigate }) {
                     {/* Company Info */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#4deeea] to-[#2d9cdb] flex items-center justify-center">
+                            {/* <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#4deeea] to-[#2d9cdb] flex items-center justify-center">
                                 <span className="text-white text-xl">S</span>
-                            </div>
+                            </div> */}
+
                             <div>
-                                <span className={`text-xl block ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+                                {/* <span className={`text-xl block ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
                                     SPicArts AI
-                                </span>
+                                </span> */}
+                                <h2>
+                                    <Link className="tubelight-text" to="/" onClick={() => handleNavigate("/")} aria-label="Go to homepage">SpicArts AI</Link>
+                                    {/* <h1 className="tubelight-text">Spicarts AI</h1> */}
+                                </h2>
                                 <span className={`text-xs ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
                                     Voice & AI Technology
                                 </span>
@@ -154,7 +167,7 @@ export function Footer({ theme, onNavigate }) {
                             {footerLinks.company.map((link) => (
                                 <li key={link.value}>
                                     <button
-                                        onClick={() => onNavigate(link.value)}
+                                        onClick={() => handleNavigate(link.value)}
                                         className={`text-sm transition-colors ${theme === 'dark'
                                             ? 'text-gray-400 hover:text-[#4deeea]'
                                             : 'text-gray-600 hover:text-[#4deeea]'
@@ -174,7 +187,7 @@ export function Footer({ theme, onNavigate }) {
                             {footerLinks.resources.map((link) => (
                                 <li key={link.label}>
                                     <button
-                                        onClick={() => onNavigate(link.value)}
+                                        onClick={() => handleNavigate(link.value)}
                                         className={`text-sm transition-colors ${theme === 'dark'
                                             ? 'text-gray-400 hover:text-[#4deeea]'
                                             : 'text-gray-600 hover:text-[#4deeea]'
@@ -194,7 +207,7 @@ export function Footer({ theme, onNavigate }) {
                             {footerLinks.support.map((link) => (
                                 <li key={link.label}>
                                     <button
-                                        onClick={() => onNavigate(link.value)}
+                                        onClick={() => handleNavigate(link.value)}
                                         className={`text-sm transition-colors ${theme === 'dark'
                                             ? 'text-gray-400 hover:text-[#4deeea]'
                                             : 'text-gray-600 hover:text-[#4deeea]'

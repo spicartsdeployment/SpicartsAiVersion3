@@ -1,0 +1,47 @@
+.tubelight-text {
+    font-family: 'Rajdhani', 'Poppins', Roboto, serif, sans-serif;
+    font-size: 2rem;
+    font-weight: 200 !important;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    /* text-transform: uppercase; */
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 4px #1fd5f9,
+        0 0 8px rgba(31, 213, 249, 1),
+        0 0 15px rgba(31, 213, 249, 0.8) 0 0 35px rgba(31, 213, 249, 0.5);
+    animation: flicker 3s linear infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    10%,
+    20% {
+        opacity: 0;
+        text-shadow: none;
+    }
+
+    5%,
+    15%,
+    25% {
+        opacity: 1;
+        text-shadow:
+            0 0 4px #1fd5f9,
+            0 0 8px rgba(31, 213, 249, 1),
+            0 0 15px rgba(31, 213, 249, 0.8),
+            0 0 35px rgba(31, 213, 249, 0.5);
+    }
+
+    35%,
+    45% {
+        opacity: 1;
+        text-shadow:
+            0 0 4px #1fd5f9,
+            0 0 8px rgba(31, 213, 249, 1),
+            0 0 15px rgba(31, 213, 249, 0.8),
+            0 0 35px rgba(31, 213, 249, 0.5);
+    }
+}

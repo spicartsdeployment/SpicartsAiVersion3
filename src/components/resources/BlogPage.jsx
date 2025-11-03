@@ -257,7 +257,7 @@ function BlogPage({ theme }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => onNavigate('resources/blog/post')}
+                onClick={() => onNavigate('/resources/blog/post')}
                 className="group cursor-pointer rounded-2xl overflow-hidden border hover:border-[#4deeea]/50 transition-all duration-300"
                 style={{
                   background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.8)',

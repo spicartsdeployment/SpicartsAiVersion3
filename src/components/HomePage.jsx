@@ -100,7 +100,7 @@ export function HomePage({ theme, onNavigate }) {
     { value: '99.9%', label: 'Uptime', icon: Shield },
     { value: '<50ms', label: 'Response Time', icon: Zap },
     { value: '100+', label: 'Languages', icon: Sparkles },
-    { value: '500+', label: 'Enterprises', icon: Users },
+    { value: '50+', label: 'Enterprises', icon: Users },
   ];
 
   return (
