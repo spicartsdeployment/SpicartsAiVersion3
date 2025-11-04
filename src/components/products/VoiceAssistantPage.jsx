@@ -1,8 +1,16 @@
 import { motion } from 'motion/react';
 import { Mic2, Sparkles, Zap, Shield, Globe, ArrowRight, CheckCircle2, Volume2, Brain, Wifi } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useNavigate } from 'react-router-dom';
 
 export function VoiceAssistantPage({ theme, onNavigate }) {
+
+    const navigate = useNavigate();
+    const handleNavigate = (path) => {
+        navigate(`/${path}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const features = [
         {
             icon: Brain,
@@ -119,7 +127,7 @@ export function VoiceAssistantPage({ theme, onNavigate }) {
 
                             <div className="flex flex-wrap gap-4">
                                 <button
-                                    onClick={() => onNavigate('demo')}
+                                    onClick={() => handleNavigate('demo')}
                                     className="px-8 py-4 rounded-xl text-black transition-all duration-300 hover:scale-105 flex items-center gap-2"
                                     style={{
                                         background: '#4deeea',
@@ -133,9 +141,10 @@ export function VoiceAssistantPage({ theme, onNavigate }) {
                                 </button>
 
                                 <button
+                                    onClick={() => handleNavigate('demo')}
                                     className={`px-8 py-4 rounded-xl border transition-all duration-300 flex items-center gap-2 ${theme === 'dark'
-                                            ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                                            : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                                        ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                                        : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                                         }`}
                                     style={{
                                         fontWeight: 600,
@@ -373,7 +382,7 @@ export function VoiceAssistantPage({ theme, onNavigate }) {
                             Join thousands of satisfied customers experiencing the future of voice AI
                         </p>
                         <button
-                            onClick={() => onNavigate('demo')}
+                            onClick={() => handleNavigate('demo')}
                             className="px-10 py-4 rounded-xl text-black transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
                             style={{
                                 background: '#4deeea',
