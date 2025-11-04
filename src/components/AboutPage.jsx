@@ -28,57 +28,52 @@ export function AboutPage({ theme, onNavigate }) {
 
     const team = [
         {
-            name: 'Dr. Sarah Chen',
-            role: 'Chief Executive Officer',
-            bio: 'Pioneer in AI research with 15+ years of experience',
+            name: 'Venkat',
+            role: 'Co-Founder & MD',
+            bio: 'Former Business Head at Tech Giants',
         },
         {
-            name: 'Michael Rodriguez',
-            role: 'Chief Technology Officer',
-            bio: 'Former lead engineer at major tech companies',
+            name: 'Prakash',
+            role: 'Co-Founder & CEO',
+            bio: 'AI Visionary and Tech Entrepreneur',
         },
         {
-            name: 'Dr. Aisha Patel',
+            name: 'Dr. Jagan Mohan',
             role: 'Head of Research',
-            bio: 'Ph.D. in Quantum Computing from MIT',
+            bio: 'Ph.D. in Medical AI and Publications in Top Journals',
         },
         {
-            name: 'James Anderson',
-            role: 'VP of Product',
-            bio: 'Expert in voice AI and natural language processing',
+            name: 'Surya',
+            role: 'Chief Operating Officer',
+            bio: 'Operations Expert and Management Specialist',
         },
     ];
 
     const milestones = [
         {
-            year: '2020',
+            year: '2024',
             title: 'Company Founded',
             description: 'SPicArts AI LLP established with a vision to revolutionize AI technology.',
         },
         {
-            year: '2021',
+            year: '2024',
             title: 'First Product Launch',
             description: 'Released our groundbreaking Voice AI platform to enterprise customers.',
         },
         {
-            year: '2022',
-            title: 'Series A Funding',
-            description: 'Secured $10M in funding to accelerate research and development.',
+            year: '2025',
+            title: 'Research Initiative in Healthcare AI',
+            description: 'Started pioneering research in AI applications for healthcare and medical imaging.',
         },
         {
-            year: '2023',
+            year: '2025',
             title: 'Quantum Research Lab',
             description: 'Established dedicated quantum machine learning research division.',
         },
         {
-            year: '2024',
-            title: 'Global Expansion',
-            description: 'Opened offices in 5 countries and served 100+ enterprise clients.',
-        },
-        {
             year: '2025',
-            title: 'Industry Recognition',
-            description: 'Awarded Best AI Innovation by leading technology publications.',
+            title: 'Advanced Robotics Division',
+            description: 'Launched new division focused on AI-driven robotics and automation solutions.',
         },
     ];
 
@@ -108,8 +103,8 @@ export function AboutPage({ theme, onNavigate }) {
                         transition={{ duration: 0.8 }}
                     >
                         <div className={`inline-block px-6 py-2 rounded-full mb-6 ${theme === 'dark'
-                                ? 'bg-white/10 backdrop-blur-xl border border-white/20'
-                                : 'bg-black/5 backdrop-blur-xl border border-black/10'
+                            ? 'bg-white/10 backdrop-blur-xl border border-white/20'
+                            : 'bg-black/5 backdrop-blur-xl border border-black/10'
                             }`}>
                             <span className={`text-sm ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                                 🌟 Our Story
@@ -221,8 +216,8 @@ export function AboutPage({ theme, onNavigate }) {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1, duration: 0.6 }}
                                     className={`p-8 rounded-3xl text-center transition-all duration-300 ${theme === 'dark'
-                                            ? 'bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10'
-                                            : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg hover:shadow-2xl'
+                                        ? 'bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10'
+                                        : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg hover:shadow-2xl'
                                         }`}
                                 >
                                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4deeea] to-[#2d9cdb] flex items-center justify-center mx-auto mb-6">
@@ -267,8 +262,8 @@ export function AboutPage({ theme, onNavigate }) {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1, duration: 0.6 }}
                                 className={`rounded-3xl overflow-hidden transition-all duration-300 ${theme === 'dark'
-                                        ? 'bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10'
-                                        : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg hover:shadow-2xl'
+                                    ? 'bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10'
+                                    : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg hover:shadow-2xl'
                                     }`}
                             >
                                 <div className="h-64 bg-gradient-to-br from-[#4deeea] to-[#2d9cdb] flex items-center justify-center">
@@ -318,8 +313,8 @@ export function AboutPage({ theme, onNavigate }) {
                             >
                                 <div className="absolute left-0 top-0 w-4 h-4 -translate-x-[9px] rounded-full bg-[#4deeea] ring-4 ring-[#4deeea]/20" />
                                 <div className={`p-6 rounded-2xl ${theme === 'dark'
-                                        ? 'bg-white/5 backdrop-blur-xl border border-white/10'
-                                        : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg'
+                                    ? 'bg-white/5 backdrop-blur-xl border border-white/10'
+                                    : 'bg-white backdrop-blur-xl border border-black/10 shadow-lg'
                                     }`}>
                                     <div className="text-[#4deeea] mb-2">{milestone.year}</div>
                                     <h3 className={`text-2xl mb-2 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
@@ -343,8 +338,8 @@ export function AboutPage({ theme, onNavigate }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className={`p-12 md:p-16 rounded-3xl text-center ${theme === 'dark'
-                                ? 'bg-gradient-to-br from-[#4deeea]/10 to-[#2d9cdb]/10 backdrop-blur-xl border border-[#4deeea]/20'
-                                : 'bg-gradient-to-br from-[#4deeea]/5 to-[#2d9cdb]/5 border border-[#4deeea]/20'
+                            ? 'bg-gradient-to-br from-[#4deeea]/10 to-[#2d9cdb]/10 backdrop-blur-xl border border-[#4deeea]/20'
+                            : 'bg-gradient-to-br from-[#4deeea]/5 to-[#2d9cdb]/5 border border-[#4deeea]/20'
                             }`}
                     >
                         <h2 className={`text-4xl md:text-5xl mb-6 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
@@ -364,8 +359,8 @@ export function AboutPage({ theme, onNavigate }) {
                             <button
                                 onClick={() => onNavigate('demo')}
                                 className={`px-8 py-4 rounded-2xl transition-all duration-300 ${theme === 'dark'
-                                        ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
-                                        : 'bg-white backdrop-blur-xl border border-black/10 text-black hover:bg-black/5 shadow-lg'
+                                    ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
+                                    : 'bg-white backdrop-blur-xl border border-black/10 text-black hover:bg-black/5 shadow-lg'
                                     }`}
                             >
                                 Contact Us
