@@ -1,8 +1,14 @@
 import { motion } from 'motion/react';
 import { Target, Users, Lightbulb, Award, TrendingUp, Heart } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { useNavigate } from 'react-router-dom';
 
 export function AboutPage({ theme, onNavigate }) {
+    const navigate = useNavigate();
+    const handleNavigate = (path) => {
+        navigate(`/${path}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     const values = [
         {
             icon: Lightbulb,
@@ -351,13 +357,13 @@ export function AboutPage({ theme, onNavigate }) {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button
-                                onClick={() => onNavigate('demo')}
+                                onClick={() => handleNavigate('demo')}
                                 className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#4deeea] to-[#2d9cdb] text-white hover:shadow-2xl hover:shadow-[#4deeea]/50 transition-all duration-300"
                             >
                                 View Open Positions
                             </button>
                             <button
-                                onClick={() => onNavigate('demo')}
+                                onClick={() => handleNavigate('demo')}
                                 className={`px-8 py-4 rounded-2xl transition-all duration-300 ${theme === 'dark'
                                     ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
                                     : 'bg-white backdrop-blur-xl border border-black/10 text-black hover:bg-black/5 shadow-lg'

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Mail, User, Building2, Phone, MessageSquare, Sparkles, Calendar, ArrowRight, Check } from 'lucide-react';
 import { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 export function RequestDemoPage({ theme, onNavigate }) {
     const [formData, setFormData] = useState({
@@ -18,6 +19,33 @@ export function RequestDemoPage({ theme, onNavigate }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (e.target.checkValidity()) {
+            console.log('Form is valid', formData);
+            emailjs.
+                send(
+                    "service_02sm0em",
+                    "template_pqr1ds9",
+                    formData,
+                    "QT2nZabQfeH43CO2l"
+                ).then(
+                    (result) => {
+                        console.log('Email successfully sent!');
+                        const phone = '8328015851';
+                        const whatsappURL = ` https://wa.me/${phone}?text=Hi, I am ${formData.name}. My email is ${formData.email}. Company is ${formData.company}. Contact number is ${formData.phone}.Required service is ${formData.interest}. Message: ${formData.message}. `;
+                        window.open(whatsappURL, "_blank");
+
+                    },
+                    (error) => {
+                        console.error('Error sending email:', error);
+                        alert('There was an error submitting the form. Please try again later.');
+                    }
+                )
+            setFormData({ name: "", email: "", company: "", phone: "", interest: "", message: "" });
+            e.target.reset();
+
+
+        }
+
         console.log('Form submitted:', formData);
         alert('Thank you! We\'ll be in touch shortly.');
     };
