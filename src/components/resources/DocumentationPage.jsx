@@ -1,8 +1,15 @@
 import { motion } from 'motion/react';
 import { FileText, Search, Book, Code, Zap, Settings, Database, Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useNavigate } from 'react-router-dom';
 
 function DocumentationPage({ theme, onNavigate }) {
+
+  const navigate = useNavigate();
+  const handleNavigate = (path) => {
+    navigate(`/${path}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   const sections = [
     {
       icon: Zap,
@@ -179,7 +186,7 @@ function DocumentationPage({ theme, onNavigate }) {
                     {section.links.map((link) => (
                       <button
                         key={link}
-                        onClick={() => onNavigate('resources/docs/article')}
+                        onClick={() => handleNavigate('resources/docs/article')}
                         className={`flex items-center gap-2 text-sm hover:text-[#4deeea] transition-colors ${theme === 'dark' ? 'text-white/70' : 'text-black/70'
                           }`}
                         style={{ fontFamily: 'Space Grotesk, sans-serif' }}
@@ -218,7 +225,7 @@ function DocumentationPage({ theme, onNavigate }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => onNavigate('resources/docs/article')}
+                onClick={() => handleNavigate('/resources/docs/article')}
                 className="group cursor-pointer rounded-2xl overflow-hidden border hover:border-[#4deeea]/50 transition-all duration-300"
                 style={{
                   background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.8)',
@@ -300,7 +307,7 @@ function DocumentationPage({ theme, onNavigate }) {
             </p>
             <div className="flex gap-4 justify-center">
               <button
-                onClick={() => onNavigate('demo')}
+                onClick={() => handleNavigate('demo')}
                 className="px-8 py-3 rounded-xl text-black transition-all duration-300 hover:scale-105"
                 style={{
                   background: '#4deeea',
@@ -313,8 +320,8 @@ function DocumentationPage({ theme, onNavigate }) {
               </button>
               <button
                 className={`px-8 py-3 rounded-xl border transition-all duration-300 ${theme === 'dark'
-                    ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                    : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                  ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                  : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                   }`}
                 style={{
                   fontWeight: 600,

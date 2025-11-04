@@ -1,8 +1,15 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function ServiceDetailPage({ theme, onNavigate, service }) {
     const Icon = service.icon;
+    const navigate = useNavigate();
+
+    const handleNavigate = (path) => {
+        navigate(path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     return (
         <div className={`min-h-screen pt-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'} transition-colors duration-300 page-transition`}>
@@ -52,8 +59,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className={`px-10 py-5 rounded-2xl transition-all duration-300 font-medium ${theme === 'dark'
-                                            ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
-                                            : 'bg-white backdrop-blur-xl border border-black/10 text-black hover:bg-black/5 shadow-lg'
+                                        ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
+                                        : 'bg-white backdrop-blur-xl border border-black/10 text-black hover:bg-black/5 shadow-lg'
                                         }`}
                                 >
                                     Schedule Demo
@@ -69,8 +76,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                             className="relative"
                         >
                             <div className={`relative rounded-3xl p-16 backdrop-blur-2xl overflow-hidden ${theme === 'dark'
-                                    ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/20'
-                                    : 'bg-gradient-to-br from-black/5 to-white border border-black/10 shadow-2xl'
+                                ? 'bg-gradient-to-br from-white/10 to-white/5 border border-white/20'
+                                : 'bg-gradient-to-br from-black/5 to-white border border-black/10 shadow-2xl'
                                 }`}>
                                 <motion.div
                                     animate={{
@@ -123,8 +130,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
                                 className={`p-6 rounded-2xl backdrop-blur-xl transition-all duration-300 ${theme === 'dark'
-                                        ? 'bg-white/5 border border-white/10 hover:bg-white/10'
-                                        : 'bg-white border border-black/10 hover:border-[#4deeea]/50 shadow-lg'
+                                    ? 'bg-white/5 border border-white/10 hover:bg-white/10'
+                                    : 'bg-white border border-black/10 hover:border-[#4deeea]/50 shadow-lg'
                                     }`}
                             >
                                 <div className="flex items-start gap-3">
@@ -164,8 +171,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                                     transition={{ delay: index * 0.2 }}
                                     whileHover={{ y: -10 }}
                                     className={`p-10 rounded-3xl backdrop-blur-xl transition-all duration-500 ${theme === 'dark'
-                                            ? 'bg-white/5 border border-white/10 hover:bg-white/10'
-                                            : 'bg-white border border-black/10 hover:border-[#4deeea]/50 shadow-lg hover:shadow-2xl'
+                                        ? 'bg-white/5 border border-white/10 hover:bg-white/10'
+                                        : 'bg-white border border-black/10 hover:border-[#4deeea]/50 shadow-lg hover:shadow-2xl'
                                         }`}
                                 >
                                     <motion.div
@@ -210,8 +217,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
                                 className={`p-10 rounded-3xl backdrop-blur-xl ${theme === 'dark'
-                                        ? 'bg-white/5 border border-white/10'
-                                        : 'bg-white border border-black/10 shadow-lg'
+                                    ? 'bg-white/5 border border-white/10'
+                                    : 'bg-white border border-black/10 shadow-lg'
                                     }`}
                             >
                                 <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -246,8 +253,8 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className={`relative p-16 md:p-24 rounded-3xl text-center overflow-hidden ${theme === 'dark'
-                                ? 'bg-gradient-to-br from-[#4deeea]/10 to-[#2d9cdb]/10 backdrop-blur-xl border border-[#4deeea]/20'
-                                : 'bg-gradient-to-br from-[#4deeea]/5 to-[#2d9cdb]/5 border border-[#4deeea]/20'
+                            ? 'bg-gradient-to-br from-[#4deeea]/10 to-[#2d9cdb]/10 backdrop-blur-xl border border-[#4deeea]/20'
+                            : 'bg-gradient-to-br from-[#4deeea]/5 to-[#2d9cdb]/5 border border-[#4deeea]/20'
                             }`}
                     >
                         <h2 className={`text-5xl md:text-6xl mb-6 font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
@@ -257,7 +264,7 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                             {service.cta.description}
                         </p>
                         <motion.button
-                            onClick={() => onNavigate('demo')}
+                            onClick={() => handleNavigate('/demo')}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`px-12 py-6 rounded-2xl bg-gradient-to-r ${service.gradient} text-white hover:shadow-2xl transition-all duration-300 text-lg font-medium inline-flex items-center gap-3`}

@@ -1,8 +1,15 @@
 import { motion } from 'motion/react';
 import { Code, Zap, Shield, Cloud, Terminal, BookOpen, Users, TrendingUp, CheckCircle2, ArrowRight, Lock, Gauge, Globe } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useNavigate } from 'react-router-dom';
 
 export function DeveloperPlatformPage({ theme, onNavigate }) {
+  const navigate = useNavigate();
+  const handleNavigate = (path) => {
+    navigate(`/${path}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   const features = [
     {
       icon: Code,
@@ -111,7 +118,7 @@ const response = await agent.speak({
 
               <div className="flex flex-wrap gap-4 mb-8">
                 <button
-                  onClick={() => onNavigate('demo')}
+                  onClick={() => handleNavigate('demo')}
                   className="px-8 py-4 rounded-xl text-black transition-all duration-300 hover:scale-105 flex items-center gap-2"
                   style={{
                     background: '#4deeea',
@@ -125,10 +132,10 @@ const response = await agent.speak({
                 </button>
 
                 <button
-                  onClick={() => onNavigate('resources/docs')}
+                  onClick={() => handleNavigate('resources/docs')}
                   className={`px-8 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
-                      ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                      : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                    ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                    : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                     }`}
                   style={{
                     fontWeight: 600,
@@ -347,7 +354,7 @@ const response = await agent.speak({
 
           <div className="mt-8 text-center">
             <button
-              onClick={() => onNavigate('resources/docs')}
+              onClick={() => handleNavigate('resources/docs')}
               className="text-[#4deeea] hover:underline"
               style={{ fontSize: '15px', fontWeight: 600 }}
             >
@@ -439,7 +446,7 @@ const response = await agent.speak({
 
             <div className="flex flex-wrap gap-4 justify-center">
               <button
-                onClick={() => onNavigate('demo')}
+                onClick={() => handleNavigate('demo')}
                 className="px-10 py-4 rounded-xl text-black transition-all duration-300 hover:scale-105"
                 style={{
                   background: '#4deeea',
@@ -452,10 +459,10 @@ const response = await agent.speak({
               </button>
 
               <button
-                onClick={() => onNavigate('pricing')}
+                onClick={() => handleNavigate('pricing')}
                 className={`px-10 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
-                    ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                    : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                  ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                  : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                   }`}
                 style={{
                   fontWeight: 600,

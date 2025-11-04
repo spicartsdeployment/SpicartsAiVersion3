@@ -427,7 +427,7 @@ export function Navbar({ theme, toggleTheme }) {
         style={{ top: '100%' }}
       >
         <div
-          className="rounded-xl border overflow-hidden"
+          className="rounded-xl border "
           style={{
             background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
             borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
@@ -539,7 +539,7 @@ export function Navbar({ theme, toggleTheme }) {
                                   <button
                                     key={subitem.path}
                                     onClick={() => handleItemClick(subitem.path)}
-                                    className={`w-full text-left px-4 py-2.5 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
+                                    className={`w-full text-left px-3 py-1 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
                                       ? 'hover:bg-white/[0.04]'
                                       : 'hover:bg-black/[0.04]'
                                       }`}

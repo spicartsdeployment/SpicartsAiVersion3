@@ -10,6 +10,7 @@ export function HomePage({ theme, onNavigate }) {
   const containerRef = useRef(null);
   const handleNavigate = (path) => {
     navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const { scrollYProgress } = useScroll({
@@ -227,7 +228,7 @@ export function HomePage({ theme, onNavigate }) {
           >
             {/* Request Demo Button */}
             <motion.button
-              onClick={() => onNavigate('demo')}
+              onClick={() => handleNavigate('demo')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative px-8 py-4 rounded-xl text-black overflow-hidden group"
@@ -255,7 +256,7 @@ export function HomePage({ theme, onNavigate }) {
 
             {/* Explore Technology Button */}
             <motion.button
-              onClick={() => onNavigate('services')}
+              onClick={() => handleNavigate('services')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`relative px-8 py-4 rounded-xl overflow-hidden group ${theme === 'dark' ? 'text-white' : 'text-black'
@@ -409,7 +410,7 @@ export function HomePage({ theme, onNavigate }) {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   whileHover={{ y: -8 }}
-                  onClick={() => onNavigate(feature.path)}
+                  onClick={() => handleNavigate(feature.path)}
                   className="group cursor-pointer relative rounded-2xl p-8 border transition-all duration-500"
                   style={{
                     background: theme === 'dark' ? '#0a0a0a' : '#fafafa',
@@ -515,7 +516,7 @@ export function HomePage({ theme, onNavigate }) {
           </p>
 
           <motion.button
-            onClick={() => onNavigate('demo')}
+            onClick={() => handleNavigate('demo')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="relative px-10 py-5 rounded-xl text-black overflow-hidden group"
@@ -601,7 +602,7 @@ export function HomePage({ theme, onNavigate }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  onClick={() => onNavigate(service.path)}
+                  onClick={() => handleNavigate(service.path)}
                   className="group relative p-8 rounded-3xl border cursor-pointer transition-all duration-300 hover:border-[#4deeea]/50"
                   style={{
                     background: theme === 'dark'
@@ -721,7 +722,7 @@ export function HomePage({ theme, onNavigate }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => onNavigate(product.path)}
+                onClick={() => handleNavigate(product.path)}
                 className="group relative p-8 rounded-3xl border cursor-pointer transition-all duration-300 hover:border-[#4deeea]/50 hover:shadow-2xl"
                 style={{
                   background: theme === 'dark'
