@@ -88,7 +88,8 @@ export function Navbar({ theme, toggleTheme }) {
     setMobileMenuOpen(false);
   };
 
-  // Multi-level Dropdown for Services
+
+
   // const ServicesDropdown = () => {
   //   return (
   //     <motion.div
@@ -96,160 +97,267 @@ export function Navbar({ theme, toggleTheme }) {
   //       animate={{ opacity: 1, y: 0 }}
   //       exit={{ opacity: 0, y: 8 }}
   //       transition={{ duration: 0.15 }}
-  //       className="absolute left-0 pt-2"
+  //       className="absolute left-0 pt-2 z-50"
   //       style={{ top: '100%' }}
   //     >
   //       <div
-  //         className="rounded-xl border"
+  //         className="rounded-xl border overflow-visible flex"
   //         style={{
   //           background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
-  //           borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-  //           boxShadow: theme === 'dark'
-  //             ? '0 10px 40px rgba(0, 0, 0, 0.6)'
-  //             : '0 10px 40px rgba(0, 0, 0, 0.15)',
-  //           minWidth: '200px',
+  //           borderColor:
+  //             theme === 'dark'
+  //               ? 'rgba(255, 255, 255, 0.08)'
+  //               : 'rgba(0, 0, 0, 0.08)',
+  //           boxShadow:
+  //             theme === 'dark'
+  //               ? '0 10px 40px rgba(0, 0, 0, 0.6)'
+  //               : '0 10px 40px rgba(0, 0, 0, 0.15)',
+  //           minWidth: '540px',
+  //           minHeight: '330px',
   //         }}
   //       >
-
-  //         <div className="py-2">
-
-
+  //         {/* LEFT SIDE: main categories */}
+  //         <div
+  //           className="w-1/3 border-r flex flex-col gap-1 py-4 px-2 bg-gradient-to-b from-[#4deeea]/10 to-transparent"
+  //           style={{
+  //             borderColor:
+  //               theme === 'dark'
+  //                 ? 'rgba(255, 255, 255, 0.08)'
+  //                 : 'rgba(0, 0, 0, 0.08)',
+  //             minHeight: '330px',
+  //             boxShadow: theme === 'dark'
+  //               ? '0 2px 12px rgba(77,238,234,0.08)'
+  //               : '0 2px 12px rgba(77,238,234,0.12)',
+  //             borderRadius: '12px 0 0 12px',
+  //           }}
+  //         >
   //           {servicesCategories.map((category) => (
-  //             <div
+  //             <button
   //               key={category.label}
-  //               className="relative"
   //               onMouseEnter={() => setActiveSubmenu(category.label)}
-
-  //             >
-  //               {console.log(category.label, activeSubmenu)}
-
-  //               <button
-  //                 className={`w-full text-left px-4 py-2.5 flex items-center justify-between group transition-colors duration-150 ${activeSubmenu === category.label
-  //                   ? 'text-[#4deeea] bg-white/[0.04]'
+  //               className={`w-full text-left px-4 py-3 flex items-center justify-between group transition-colors duration-150 rounded-lg
+  //               ${activeSubmenu === category.label
+  //                   ? 'text-[#4deeea] bg-[#4deeea]/10 font-bold shadow-md'
   //                   : theme === 'dark'
-  //                     ? 'text-white/80 hover:text-white hover:bg-white/[0.04]'
-  //                     : 'text-black/80 hover:text-black hover:bg-black/[0.04]'
+  //                     ? 'text-white/80 hover:text-[#4deeea] hover:bg-white/[0.04]'
+  //                     : 'text-black/80 hover:text-[#4deeea] hover:bg-black/[0.04]'
+  //                 }`}
+  //               style={{
+  //                 fontFamily: 'Space Grotesk, sans-serif',
+  //                 fontSize: '15px',
+  //                 fontWeight: activeSubmenu === category.label ? 700 : 500,
+  //                 letterSpacing: '0.01em',
+  //                 marginBottom: '2px',
+  //               }}
+  //             >
+  //               <span>{category.label}</span>
+  //               <ChevronRight
+  //                 size={16}
+  //                 className={`transition-colors ${activeSubmenu === category.label
+  //                   ? 'text-[#4deeea]'
+  //                   : theme === 'dark'
+  //                     ? 'text-white/40'
+  //                     : 'text-black/40'
   //                   }`}
-  //                 style={{
-  //                   fontFamily: 'Space Grotesk, sans-serif',
-  //                   fontSize: '14px',
-  //                   fontWeight: 500,
-  //                 }}
+  //               />
+  //             </button>
+  //           ))}
+  //         </div>
+
+  //         {/* RIGHT SIDE: submenu (dynamic) */}
+  //         {/* <div className="flex-1 relative px-4 py-6">
+  //           { <AnimatePresence mode="wait">
+  //             {activeSubmenu && (
+  //               <motion.div
+  //                 // key={activeSubmenu}
+  //                 initial={{ opacity: 0, x: -10 }}
+  //                 animate={{ opacity: 1, x: 0 }}
+  //                 exit={{ opacity: 0, x: -10 }}
+  //                 transition={{ duration: 0.15 }}
+  //                 className="absolute inset-0"
   //               >
-  //                 <span>{category.label}</span>
-  //                 <ChevronRight
-  //                   size={14}
-  //                   className={`transition-colors ${activeSubmenu === category.label ? 'text-[#4deeea]' : 'text-white/40'
-  //                     }`}
-  //                 />
-  //               </button>
-
-
-
-
-  //               {/* Submenu */}
-  //               <AnimatePresence>
-
-  //                 {activeSubmenu === category.label && (
-
-  //                   <motion.div
-  //                     initial={{ opacity: 0, x: -10 }}
-  //                     animate={{ opacity: 1, x: 0 }}
-  //                     exit={{ opacity: 0, x: -10 }}
-  //                     transition={{ duration: 0.15 }}
-  //                     className="left-full top-0 ml-1"
-  //                     style={{ minWidth: '320px' }}
-  //                   >
-  //                     <div
-  //                       className="rounded-xl border overflow-hidden"
-  //                       style={{
-  //                         background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
-  //                         borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-  //                         boxShadow: theme === 'dark'
-  //                           ? '0 10px 40px rgba(0, 0, 0, 0.6)'
-  //                           : '0 10px 40px rgba(0, 0, 0, 0.15)',
-  //                       }}
-  //                     >
-  //                       <div className="py-2">
-  //                         {category.items.map((item) => {
-  //                           console.log('Rendering item:', item.label);
-  //                           const Icon = item.icon;
-  //                           return (
-  //                             <button
-  //                               key={item.path}
-  //                               onClick={() => handleItemClick(item.path)}
-  //                               className={`w-full text-left px-4 py-2.5 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
+  //                 <div
+  //                   className="rounded-lg border bg-gradient-to-br from-[#4deeea]/5 to-transparent shadow-lg py-1 px-3"
+  //                   style={{
+  //                     borderColor:
+  //                       theme === 'dark'
+  //                         ? 'rgba(255,255,255,0.08)'
+  //                         : 'rgba(0,0,0,0.08)',
+  //                     minHeight: '330px',
+  //                     width: '100%',
+  //                     maxWidth: '100%'
+  //                   }}
+  //                 >
+  //                   <div className="py-2">
+  //                     {servicesCategories
+  //                       .find((cat) => cat.label === activeSubmenu)
+  //                       ?.items.map((item) => {
+  //                         const Icon = item.icon;
+  //                         return (
+  //                           <button
+  //                             key={item.path}
+  //                             onClick={() => handleItemClick(item.path)}
+  //                             className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+  //                             ${theme === 'dark'
   //                                 ? 'hover:bg-white/[0.04]'
   //                                 : 'hover:bg-black/[0.04]'
-  //                                 }`}
-  //                             >
-  //                               <div
-  //                                 className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150 ${theme === 'dark'
+  //                               }`}
+  //                             style={{
+  //                               marginBottom: '3px',
+  //                             }}
+  //                           >
+  //                             <div
+  //                               className={`w-9 h-9 rounded px-2 flex items-center justify-center flex-shrink-0 transition-all duration-150
+  //                               ${theme === 'dark'
   //                                   ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
   //                                   : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
-  //                                   }`}
-  //                               >
-  //                                 <Icon
-  //                                   size={14}
-  //                                   className={`transition-colors duration-150 ${theme === 'dark'
+  //                                 }`}
+  //                             >
+  //                               <Icon
+  //                                 size={18}
+  //                                 className={`transition-colors duration-150
+  //                                 ${theme === 'dark'
   //                                     ? 'text-white/60 group-hover:text-[#4deeea]'
   //                                     : 'text-black/60 group-hover:text-[#4deeea]'
-  //                                     }`}
-  //                                 />
-  //                               </div>
-
-  //                               <div className="flex-1 min-w-0">
-  //                                 <div
-  //                                   className={`transition-colors duration-150 ${theme === 'dark'
+  //                                   }`}
+  //                               />
+  //                             </div>
+  //                             <div className="flex-1 min-w-0">
+  //                               <div
+  //                                 className={`transition-colors duration-150
+  //                                 ${theme === 'dark'
   //                                     ? 'text-white/90 group-hover:text-[#4deeea]'
   //                                     : 'text-black/90 group-hover:text-[#4deeea]'
-  //                                     }`}
-  //                                   style={{
-  //                                     fontSize: '14px',
-  //                                     fontWeight: 500,
-  //                                     fontFamily: 'Space Grotesk, sans-serif',
-  //                                     marginBottom: '2px',
-  //                                   }}
-  //                                 >
-  //                                   {item.label}
-  //                                 </div>
-  //                                 <p
-  //                                   className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
-  //                                   style={{
-  //                                     fontSize: '12px',
-  //                                     lineHeight: '1.4',
-  //                                   }}
-  //                                 >
-  //                                   {item.description}
-  //                                 </p>
+  //                                   }`}
+  //                                 style={{
+  //                                   fontSize: '13px',
+  //                                   fontWeight: 600,
+  //                                   fontFamily: 'Space Grotesk, sans-serif',
+  //                                   marginBottom: '2px',
+  //                                 }}
+  //                               >
+  //                                 {item.label}
   //                               </div>
-  //                             </button>
-  //                           );
-  //                         })}
-  //                       </div>
-  //                     </div>
-  //                   </motion.div>
-  //                 )}
-  //               </AnimatePresence>
+  //                               <p
+  //                                 className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                                 style={{
+  //                                   fontSize: '13px',
+  //                                   lineHeight: '1.5',
+  //                                 }}
+  //                               >
+  //                                 {item.description}
+  //                               </p>
+  //                             </div>
+  //                           </button>
+  //                         );
+  //                       })}
+  //                   </div>
+  //                 </div>
+  //               </motion.div>
+  //             )}
+  //           </AnimatePresence> }
+  //         </div> */}
+  //         <div className="flex-1 relative px-4 py-6">
+  //           <div className="absolute inset-0">
+  //             <div
+  //               className="rounded-lg border bg-gradient-to-br from-[#4deeea]/5 to-transparent shadow-lg py-1 px-3"
+  //               style={{
+  //                 borderColor:
+  //                   theme === 'dark'
+  //                     ? 'rgba(255,255,255,0.08)'
+  //                     : 'rgba(0,0,0,0.08)',
+  //                 minHeight: '330px',
+  //                 width: '100%',
+  //                 maxWidth: '100%'
+  //               }}
+  //             >
+  //               <div className="py-2">
+  //                 {servicesCategories
+  //                   .find((cat) => cat.label === activeSubmenu)
+  //                   ?.items.map((item) => {
+  //                     const Icon = item.icon;
+  //                     return (
+  //                       <button
+  //                         key={item.path}
+  //                         onClick={() => handleItemClick(item.path)}
+  //                         className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+  //               ${theme === 'dark'
+  //                             ? 'hover:bg-white/[0.04]'
+  //                             : 'hover:bg-black/[0.04]'
+  //                           }`}
+  //                         style={{
+  //                           marginBottom: '3px',
+  //                         }}
+  //                       >
+  //                         <div
+  //                           className={`w-9 h-9 rounded px-2 flex items-center justify-center flex-shrink-0 transition-all duration-150
+  //                 ${theme === 'dark'
+  //                               ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                               : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                             }`}
+  //                         >
+  //                           <Icon
+  //                             size={18}
+  //                             className={`transition-colors duration-150
+  //                   ${theme === 'dark'
+  //                                 ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                                 : 'text-black/60 group-hover:text-[#4deeea]'
+  //                               }`}
+  //                           />
+  //                         </div>
+  //                         <div className="flex-1 min-w-0">
+  //                           <div
+  //                             className={`transition-colors duration-150
+  //                   ${theme === 'dark'
+  //                                 ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                                 : 'text-black/90 group-hover:text-[#4deeea]'
+  //                               }`}
+  //                             style={{
+  //                               fontSize: '13px',
+  //                               fontWeight: 600,
+  //                               fontFamily: 'Space Grotesk, sans-serif',
+  //                               marginBottom: '2px',
+  //                             }}
+  //                           >
+  //                             {item.label}
+  //                           </div>
+  //                           <p
+  //                             className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                             style={{
+  //                               fontSize: '13px',
+  //                               lineHeight: '1.5',
+  //                             }}
+  //                           >
+  //                             {item.description}
+  //                           </p>
+  //                         </div>
+  //                       </button>
+  //                     );
+  //                   })}
+  //               </div>
   //             </div>
-  //           ))}
+  //           </div>
   //         </div>
   //       </div>
   //     </motion.div>
   //   );
   // };
 
-  // 
+
+
+  // Direct Dropdown for Products and Resources
+
 
   const ServicesDropdown = () => {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 8 }}
-        transition={{ duration: 0.15 }}
+      <div
         className="absolute left-0 pt-2 z-50"
         style={{ top: '100%' }}
+        onMouseEnter={() => setActiveDropdown('services')}
+        onMouseLeave={() => {
+          setActiveDropdown(null);
+          setActiveSubmenu(null);
+        }}
       >
         <div
           className="rounded-xl border overflow-visible flex"
@@ -264,10 +372,10 @@ export function Navbar({ theme, toggleTheme }) {
                 ? '0 10px 40px rgba(0, 0, 0, 0.6)'
                 : '0 10px 40px rgba(0, 0, 0, 0.15)',
             minWidth: '540px',
-            minHeight: '330px',
+            minHeight: '310px',
           }}
         >
-          {/* LEFT SIDE: main categories */}
+          {/* LEFT SIDE: categories */}
           <div
             className="w-1/3 border-r flex flex-col gap-1 py-4 px-2 bg-gradient-to-b from-[#4deeea]/10 to-transparent"
             style={{
@@ -275,10 +383,7 @@ export function Navbar({ theme, toggleTheme }) {
                 theme === 'dark'
                   ? 'rgba(255, 255, 255, 0.08)'
                   : 'rgba(0, 0, 0, 0.08)',
-              minHeight: '330px',
-              boxShadow: theme === 'dark'
-                ? '0 2px 12px rgba(77,238,234,0.08)'
-                : '0 2px 12px rgba(77,238,234,0.12)',
+              minHeight: '30px',
               borderRadius: '12px 0 0 12px',
             }}
           >
@@ -286,7 +391,7 @@ export function Navbar({ theme, toggleTheme }) {
               <button
                 key={category.label}
                 onMouseEnter={() => setActiveSubmenu(category.label)}
-                className={`w-full text-left px-4 py-3 flex items-center justify-between group transition-colors duration-150 rounded-lg
+                className={`w-full text-left px-4 py-3 flex items-center justify-between rounded-lg transition-all duration-100
                 ${activeSubmenu === category.label
                     ? 'text-[#4deeea] bg-[#4deeea]/10 font-bold shadow-md'
                     : theme === 'dark'
@@ -296,9 +401,6 @@ export function Navbar({ theme, toggleTheme }) {
                 style={{
                   fontFamily: 'Space Grotesk, sans-serif',
                   fontSize: '15px',
-                  fontWeight: activeSubmenu === category.label ? 700 : 500,
-                  letterSpacing: '0.01em',
-                  marginBottom: '2px',
                 }}
               >
                 <span>{category.label}</span>
@@ -315,292 +417,714 @@ export function Navbar({ theme, toggleTheme }) {
             ))}
           </div>
 
-          {/* RIGHT SIDE: submenu (dynamic) */}
-          <div className="flex-1 relative px-4 py-6">
-            <AnimatePresence mode="wait">
-              {activeSubmenu && (
-                <motion.div
-                  key={activeSubmenu}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute inset-0"
-                >
-                  <div
-                    className="rounded-lg border bg-gradient-to-br from-[#4deeea]/5 to-transparent shadow-lg py-1 px-3"
-                    style={{
-                      borderColor:
-                        theme === 'dark'
-                          ? 'rgba(255,255,255,0.08)'
-                          : 'rgba(0,0,0,0.08)',
-                      minHeight: '330px',
-                      width: '100%',
-                      maxWidth: '100%'
-                    }}
-                  >
-                    <div className="py-2">
-                      {servicesCategories
-                        .find((cat) => cat.label === activeSubmenu)
-                        ?.items.map((item) => {
-                          const Icon = item.icon;
-                          return (
-                            <button
-                              key={item.path}
-                              onClick={() => handleItemClick(item.path)}
-                              className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
-                              ${theme === 'dark'
-                                  ? 'hover:bg-white/[0.04]'
-                                  : 'hover:bg-black/[0.04]'
-                                }`}
-                              style={{
-                                marginBottom: '3px',
-                              }}
-                            >
-                              <div
-                                className={`w-9 h-9 rounded px-2 flex items-center justify-center flex-shrink-0 transition-all duration-150
-                                ${theme === 'dark'
-                                    ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
-                                    : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
-                                  }`}
-                              >
-                                <Icon
-                                  size={18}
-                                  className={`transition-colors duration-150
-                                  ${theme === 'dark'
-                                      ? 'text-white/60 group-hover:text-[#4deeea]'
-                                      : 'text-black/60 group-hover:text-[#4deeea]'
-                                    }`}
-                                />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div
-                                  className={`transition-colors duration-150
-                                  ${theme === 'dark'
-                                      ? 'text-white/90 group-hover:text-[#4deeea]'
-                                      : 'text-black/90 group-hover:text-[#4deeea]'
-                                    }`}
-                                  style={{
-                                    fontSize: '13px',
-                                    fontWeight: 600,
-                                    fontFamily: 'Space Grotesk, sans-serif',
-                                    marginBottom: '2px',
-                                  }}
-                                >
-                                  {item.label}
-                                </div>
-                                <p
-                                  className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
-                                  style={{
-                                    fontSize: '13px',
-                                    lineHeight: '1.5',
-                                  }}
-                                >
-                                  {item.description}
-                                </p>
-                              </div>
-                            </button>
-                          );
-                        })}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
-
-
-
-  // Direct Dropdown for Products and Resources
-  const DirectDropdown = ({ items, type }) => {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 8 }}
-        transition={{ duration: 0.15 }}
-        className="absolute left-0 pt-2"
-        style={{ top: '100%' }}
-      >
-        <div
-          className="rounded-xl border "
-          style={{
-            background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
-            borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-            boxShadow: theme === 'dark'
-              ? '0 10px 40px rgba(0, 0, 0, 0.6)'
-              : '0 10px 40px rgba(0, 0, 0, 0.15)',
-            minWidth: '320px',
-          }}
-        >
-          <div className="py-2 ">
-            {items.map((item) => {
-              const Icon = item.icon;
-              const hasSubmenu = item.submenu && item.submenu.length > 0;
-
-              return (
-                <div
-                  key={item.path}
-                  className="relative"
-                  onMouseEnter={() => hasSubmenu && setActiveSubmenu(item.label)}
-                  onMouseLeave={() => hasSubmenu && setActiveSubmenu(null)}
-                >
+          {/* RIGHT SIDE: dynamic content (no flicker, no animation) */}
+          <div className="flex-1 relative px-0 py-0">
+            <div
+              className="rounded-lg border bg-gradient-to-br from-[#4deeea]/5 to-transparent shadow-lg py-2 px-3"
+              style={{
+                borderColor:
+                  theme === 'dark'
+                    ? 'rgba(255,255,255,0.08)'
+                    : 'rgba(0,0,0,0.08)',
+                minHeight: '310px',
+                width: '100%',
+              }}
+            >
+              {(servicesCategories.find(cat => cat.label === activeSubmenu) ||
+                servicesCategories[0]  // fallback to first category (AI)
+              ).items.map((item) => {
+                const Icon = item.icon;
+                return (
                   <button
-                    onClick={() => {
-                      if (!hasSubmenu) handleItemClick(item.path);
-                    }}
-                    className={`w-full text-left px-4 py-2.5 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
-                      ? 'hover:bg-white/[0.04]'
-                      : 'hover:bg-black/[0.04]'
+                    key={item.path}
+                    onClick={() => handleItemClick(item.path)}
+                    className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+                    ${theme === 'dark'
+                        ? 'hover:bg-white/[0.04]'
+                        : 'hover:bg-black/[0.04]'
                       }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150 ${theme === 'dark'
-                        ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
-                        : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+                      className={`w-9 h-9 rounded px-2 flex items-center justify-center flex-shrink-0
+                      ${theme === 'dark'
+                          ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+                          : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
                         }`}
                     >
                       <Icon
-                        size={14}
-                        className={`transition-colors duration-150 ${theme === 'dark'
-                          ? 'text-white/60 group-hover:text-[#4deeea]'
-                          : 'text-black/60 group-hover:text-[#4deeea]'
+                        size={18}
+                        className={`transition-colors duration-150
+                        ${theme === 'dark'
+                            ? 'text-white/60 group-hover:text-[#4deeea]'
+                            : 'text-black/60 group-hover:text-[#4deeea]'
                           }`}
                       />
                     </div>
-
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <div
-                          className={`transition-colors duration-150 ${theme === 'dark'
+                      <div
+                        className={`transition-colors duration-150
+                        ${theme === 'dark'
                             ? 'text-white/90 group-hover:text-[#4deeea]'
                             : 'text-black/90 group-hover:text-[#4deeea]'
-                            }`}
-                          style={{
-                            fontSize: '14px',
-                            fontWeight: 500,
-                            fontFamily: 'Space Grotesk, sans-serif',
-                            marginBottom: '2px',
-                          }}
-                        >
-                          {item.label}
-                        </div>
-                        {hasSubmenu && (
-                          <ChevronRight
-                            size={14}
-                            className={`transition-colors ${activeSubmenu === item.label ? 'text-[#4deeea]' : 'text-white/40'
-                              }`}
-                          />
-                        )}
+                          }`}
+                        style={{
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          fontFamily: 'Space Grotesk, sans-serif',
+                          marginBottom: '2px',
+                        }}
+                      >
+                        {item.label}
                       </div>
                       <p
                         className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
                         style={{
-                          fontSize: '12px',
-                          lineHeight: '1.4',
+                          fontSize: '13px',
+                          lineHeight: '1.5',
                         }}
                       >
                         {item.description}
                       </p>
                     </div>
                   </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
 
-                  {/* Submenu for Research & Development */}
+
+
+  // const DirectDropdown = ({ items, type }) => {
+  //   return (
+  //     <motion.div
+  //       initial={{ opacity: 0, y: 8 }}
+  //       animate={{ opacity: 1, y: 0 }}
+  //       exit={{ opacity: 0, y: 8 }}
+  //       transition={{ duration: 0.15 }}
+  //       className="absolute left-0 pt-2"
+  //       style={{ top: '100%' }}
+  //     >
+  //       <div
+  //         className="rounded-xl border "
+  //         style={{
+  //           background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
+  //           borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
+  //           boxShadow: theme === 'dark'
+  //             ? '0 10px 40px rgba(0, 0, 0, 0.6)'
+  //             : '0 10px 40px rgba(0, 0, 0, 0.15)',
+  //           minWidth: '320px',
+  //         }}
+  //       >
+  //         <div className="py-2 ">
+  //           {items.map((item) => {
+  //             const Icon = item.icon;
+  //             const hasSubmenu = item.submenu && item.submenu.length > 0;
+
+  //             return (
+  //               <div
+  //                 key={item.path}
+  //                 className="relative"
+  //                 onMouseEnter={() => hasSubmenu && setActiveSubmenu(item.label)}
+  //                 onMouseLeave={() => hasSubmenu && setActiveSubmenu(null)}
+  //               >
+  //                 <button
+  //                   onClick={() => {
+  //                     if (!hasSubmenu) handleItemClick(item.path);
+  //                   }}
+  //                   className={`w-full text-left px-4 py-2.5 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
+  //                     ? 'hover:bg-white/[0.04]'
+  //                     : 'hover:bg-black/[0.04]'
+  //                     }`}
+  //                 >
+  //                   <div
+  //                     className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150 ${theme === 'dark'
+  //                       ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                       : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                       }`}
+  //                   >
+  //                     <Icon
+  //                       size={14}
+  //                       className={`transition-colors duration-150 ${theme === 'dark'
+  //                         ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                         : 'text-black/60 group-hover:text-[#4deeea]'
+  //                         }`}
+  //                     />
+  //                   </div>
+
+  //                   <div className="flex-1 min-w-0">
+  //                     <div className="flex items-center justify-between">
+  //                       <div
+  //                         className={`transition-colors duration-150 ${theme === 'dark'
+  //                           ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                           : 'text-black/90 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                         style={{
+  //                           fontSize: '14px',
+  //                           fontWeight: 500,
+  //                           fontFamily: 'Space Grotesk, sans-serif',
+  //                           marginBottom: '2px',
+  //                         }}
+  //                       >
+  //                         {item.label}
+  //                       </div>
+  //                       {hasSubmenu && (
+  //                         <ChevronRight
+  //                           size={14}
+  //                           className={`transition-colors ${activeSubmenu === item.label ? 'text-[#4deeea]' : 'text-white/40'
+  //                             }`}
+  //                         />
+  //                       )}
+  //                     </div>
+  //                     <p
+  //                       className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                       style={{
+  //                         fontSize: '12px',
+  //                         lineHeight: '1.4',
+  //                       }}
+  //                     >
+  //                       {item.description}
+  //                     </p>
+  //                   </div>
+  //                 </button>
+
+
+  //                 {/* Submenu for Research & Development */}
+  //                 {hasSubmenu && (
+  //                   <AnimatePresence>
+  //                     {activeSubmenu === item.label && (
+  //                       <motion.div
+  //                         initial={{ opacity: 0, x: -10 }}
+  //                         animate={{ opacity: 1, x: 0 }}
+  //                         exit={{ opacity: 0, x: -10 }}
+  //                         transition={{ duration: 0.15 }}
+  //                         className="absolute left-full top-0 ml-1"
+  //                         style={{ minWidth: '280px' }}
+  //                       >
+  //                         <div
+  //                           className="rounded-xl border overflow-visible"
+  //                           style={{
+  //                             background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
+  //                             borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
+  //                             boxShadow: theme === 'dark'
+  //                               ? '0 10px 40px rgba(0, 0, 0, 0.6)'
+  //                               : '0 10px 40px rgba(0, 0, 0, 0.15)',
+  //                           }}
+  //                         >
+  //                           <div className="py-2">
+  //                             {item.submenu.map((subitem) => {
+  //                               const SubIcon = subitem.icon;
+  //                               return (
+  //                                 <button
+  //                                   key={subitem.path}
+  //                                   onClick={() => handleItemClick(subitem.path)}
+  //                                   className={`w-full text-left px-3 py-1 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
+  //                                     ? 'hover:bg-white/[0.04]'
+  //                                     : 'hover:bg-black/[0.04]'
+  //                                     }`}
+  //                                 >
+  //                                   <div
+  //                                     className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150 ${theme === 'dark'
+  //                                       ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                                       : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                                       }`}
+  //                                   >
+  //                                     <SubIcon
+  //                                       size={14}
+  //                                       className={`transition-colors duration-150 ${theme === 'dark'
+  //                                         ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                                         : 'text-black/60 group-hover:text-[#4deeea]'
+  //                                         }`}
+  //                                     />
+  //                                   </div>
+
+  //                                   <div className="flex-1 min-w-0">
+  //                                     <div
+  //                                       className={`transition-colors duration-150 ${theme === 'dark'
+  //                                         ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                                         : 'text-black/90 group-hover:text-[#4deeea]'
+  //                                         }`}
+  //                                       style={{
+  //                                         fontSize: '14px',
+  //                                         fontWeight: 500,
+  //                                         fontFamily: 'Space Grotesk, sans-serif',
+  //                                         marginBottom: '2px',
+  //                                       }}
+  //                                     >
+  //                                       {subitem.label}
+  //                                     </div>
+  //                                     <p
+  //                                       className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                                       style={{
+  //                                         fontSize: '12px',
+  //                                         lineHeight: '1.4',
+  //                                       }}
+  //                                     >
+  //                                       {subitem.description}
+  //                                     </p>
+  //                                   </div>
+  //                                 </button>
+  //                               );
+  //                             })}
+  //                           </div>
+  //                         </div>
+  //                       </motion.div>
+  //                     )}
+  //                   </AnimatePresence>
+  //                 )}
+  //               </div>
+  //             );
+  //           })}
+  //         </div>
+  //       </div>
+  //     </motion.div>
+  //   );
+  // };
+
+  // const DirectDropdown = ({ items, type }) => {
+  //   return (
+  //     <div
+  //       className="absolute left-0 pt-2 z-50"
+  //       style={{ top: '100%' }}
+  //       onMouseEnter={() => setActiveDropdown(type)}
+  //       onMouseLeave={() => {
+  //         setActiveDropdown(null);
+  //         setActiveSubmenu(null);
+  //       }}
+  //     >
+  //       <div
+  //         className="rounded-xl border overflow-visible flex"
+  //         style={{
+  //           background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
+  //           borderColor:
+  //             theme === 'dark'
+  //               ? 'rgba(255, 255, 255, 0.08)'
+  //               : 'rgba(0, 0, 0, 0.08)',
+  //           boxShadow:
+  //             theme === 'dark'
+  //               ? '0 10px 40px rgba(0, 0, 0, 0.6)'
+  //               : '0 10px 40px rgba(0, 0, 0, 0.15)',
+  //           minWidth: '300px',
+  //           minHeight: '180px',
+  //         }}
+  //       >
+  //         {/* LEFT SIDE: Items list */}
+  //         <div
+  //           //className="flex-1 relative py-4 px-3"
+  //           className=" w-1/2 border-r flex-1  flex-col gap-1 px-0 py-2 bg-gradient-to-b from-[#4deeea]/10 to-transparent"
+  //           style={{
+  //             //   borderColor:
+  //             //     theme === 'dark'
+  //             //       ? 'rgba(255, 255, 255, 0.08)'
+  //             //       : 'rgba(0, 0, 0, 0.08)',
+  //             //   minHeight: '180px',
+  //             //   borderRadius: '12px 0 0 12px',
+  //           }}
+  //         >
+  //           {items.map((item) => {
+  //             const Icon = item.icon;
+  //             const hasSubmenu = item.submenu && item.submenu.length > 0;
+  //             return (
+  //               <div
+  //                 key={item.path}
+  //                 className="relative"
+  //                 onMouseEnter={() => hasSubmenu && setActiveSubmenu(item.label)}
+  //               >
+  //                 <button
+  //                   onClick={() => !hasSubmenu && handleItemClick(item.path)}
+  //                   className={`w-full text-left px-4 py-2 flex items-start gap-3 group transition-all duration-150 
+  //                   ${theme === 'dark'
+  //                       ? 'hover:bg-white/[0.04]'
+  //                       : 'hover:bg-black/[0.04]'
+  //                     }`}
+  //                 >
+
+  //                   <div
+  //                     className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0
+  //                     ${theme === 'dark'
+  //                         ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                         : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                       }`}
+  //                   >
+  //                     <Icon
+  //                       size={14}
+  //                       className={`transition-colors duration-150
+  //                       ${theme === 'dark'
+  //                           ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                           : 'text-black/60 group-hover:text-[#4deeea]'
+  //                         }`}
+  //                     />
+  //                   </div>
+
+  //                   <div className="flex-1 min-w-0">
+  //                     <div className="flex items-center justify-between">
+  //                       <div
+  //                         className={`transition-colors duration-150
+  //                         ${theme === 'dark'
+  //                             ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                             : 'text-black/90 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                         style={{
+  //                           fontSize: '14px',
+  //                           fontWeight: 500,
+  //                           fontFamily: 'Space Grotesk, sans-serif',
+  //                         }}
+  //                       >
+  //                         {item.label}
+  //                       </div>
+  //                       {hasSubmenu && (
+  //                         <ChevronRight
+  //                           size={14}
+  //                           className={`transition-colors ${activeSubmenu === item.label
+  //                             ? 'text-[#4deeea]'
+  //                             : theme === 'dark'
+  //                               ? 'text-white/40'
+  //                               : 'text-black/40'
+  //                             }`}
+  //                         />
+  //                       )}
+  //                     </div>
+  //                     <p
+  //                       className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                       style={{
+  //                         fontSize: '12px',
+  //                         lineHeight: '1.4',
+  //                       }}
+  //                     >
+  //                       {item.description}
+  //                     </p>
+  //                   </div>
+  //                 </button>
+  //               </div>
+  //             );
+  //           })}
+  //         </div>
+
+  //         {/* RIGHT SIDE: Submenu (instant, no flicker) */}
+  //         {/* {activeSubmenu && (
+  //           <div
+  //             className="absolute left-full top-2 ml-2 rounded-xl border bg-gradient-to-br from-[#4deeea]/5 to-transparent shadow-lg py-1 px-1"
+  //             style={{
+  //               borderColor:
+  //                 theme === 'dark'
+  //                   ? 'rgba(255, 255, 255, 0.08)'
+  //                   : 'rgba(0, 0, 0, 0.08)',
+  //               minWidth: '280px',
+  //               width: '280px',
+  //             }}
+  //           >
+  //             {items
+  //               .find((it) => it.label === activeSubmenu)
+  //               ?.submenu.map((subitem) => {
+  //                 const SubIcon = subitem.icon;
+  //                 return (
+  //                   <button
+  //                     key={subitem.path}
+  //                     onClick={() => handleItemClick(subitem.path)}
+  //                     className={`w-full text-left px-2 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+  //                     ${theme === 'dark'
+  //                         ? 'hover:bg-white/[0.04]'
+  //                         : 'hover:bg-black/[0.04]'
+  //                       }`}
+  //                   >
+  //                     <div
+  //                       className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0
+  //                       ${theme === 'dark'
+  //                           ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                           : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                         }`}
+  //                     >
+  //                       <SubIcon
+  //                         size={14}
+  //                         className={`transition-colors duration-150
+  //                         ${theme === 'dark'
+  //                             ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                             : 'text-black/60 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                       />
+  //                     </div>
+
+  //                     <div className="flex-1 min-w-0">
+  //                       <div
+  //                         className={`transition-colors duration-150
+  //                         ${theme === 'dark'
+  //                             ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                             : 'text-black/90 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                         style={{
+  //                           fontSize: '13px',
+  //                           fontWeight: 600,
+  //                           fontFamily: 'Space Grotesk, sans-serif',
+  //                           marginBottom: '2px',
+  //                         }}
+  //                       >
+  //                         {subitem.label}
+  //                       </div>
+  //                       <p
+  //                         className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                         style={{
+  //                           fontSize: '12px',
+  //                           lineHeight: '1.4',
+  //                         }}
+  //                       >
+  //                         {subitem.description}
+  //                       </p>
+  //                     </div>
+  //                   </button>
+  //                 );
+  //               })}
+  //           </div>
+  //         )} */}
+  //         <div
+  //           className="flex-1 relative px-4 py-6 bg-gradient-to-br from-[#4deeea]/5 to-transparent"
+  //           style={{
+  //             minHeight: '330px',
+  //             borderRadius: '0 12px 12px 0',
+  //           }}
+  //         >
+  //           {activeSubmenu &&
+  //             items
+  //               .find((it) => it.label === activeSubmenu)
+  //               ?.submenu.map((subitem) => {
+  //                 const SubIcon = subitem.icon;
+  //                 return (
+  //                   <button
+  //                     key={subitem.path}
+  //                     onClick={() => handleItemClick(subitem.path)}
+  //                     className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+  //                     ${theme === 'dark'
+  //                         ? 'hover:bg-white/[0.04]'
+  //                         : 'hover:bg-black/[0.04]'
+  //                       }`}
+  //                   >
+  //                     <div
+  //                       className={`w-9 h-9 rounded px-2 flex items-center justify-center flex-shrink-0 transition-all duration-150
+  //                       ${theme === 'dark'
+  //                           ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+  //                           : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+  //                         }`}
+  //                     >
+  //                       <SubIcon
+  //                         size={18}
+  //                         className={`transition-colors duration-150
+  //                         ${theme === 'dark'
+  //                             ? 'text-white/60 group-hover:text-[#4deeea]'
+  //                             : 'text-black/60 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                       />
+  //                     </div>
+
+  //                     <div className="flex-1 min-w-0">
+  //                       <div
+  //                         className={`transition-colors duration-150
+  //                         ${theme === 'dark'
+  //                             ? 'text-white/90 group-hover:text-[#4deeea]'
+  //                             : 'text-black/90 group-hover:text-[#4deeea]'
+  //                           }`}
+  //                         style={{
+  //                           fontSize: '13px',
+  //                           fontWeight: 600,
+  //                           fontFamily: 'Space Grotesk, sans-serif',
+  //                           marginBottom: '2px',
+  //                         }}
+  //                       >
+  //                         {subitem.label}
+  //                       </div>
+  //                       <p
+  //                         className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+  //                         style={{
+  //                           fontSize: '12px',
+  //                           lineHeight: '1.5',
+  //                         }}
+  //                       >
+  //                         {subitem.description}
+  //                       </p>
+  //                     </div>
+  //                   </button>
+  //                 );
+  //               })}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+  const DirectDropdown = ({ items, type }) => {
+    return (
+      <div
+        className="absolute left-0 pt-2 z-50"
+        style={{ top: '100%' }}
+        onMouseEnter={() => setActiveDropdown(type)}
+        onMouseLeave={() => {
+          setActiveDropdown(null);
+          setActiveSubmenu(null);
+        }}
+      >
+        <div
+          className="rounded-xl border overflow-visible flex"
+          style={{
+            background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
+            borderColor:
+              theme === 'dark'
+                ? 'rgba(255, 255, 255, 0.08)'
+                : 'rgba(0, 0, 0, 0.08)',
+            boxShadow:
+              theme === 'dark'
+                ? '0 10px 40px rgba(0, 0, 0, 0.6)'
+                : '0 10px 40px rgba(0, 0, 0, 0.15)',
+            minWidth: '580px',
+            minHeight: '200px',
+          }}
+        >
+          {/* LEFT SIDE: main items */}
+          <div
+            className="w-1/2 border-r flex flex-col gap-1 py-4 px-2 bg-gradient-to-b from-[#4deeea]/10 to-transparent"
+            style={{
+              borderColor:
+                theme === 'dark'
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(0, 0, 0, 0.08)',
+              minHeight: '200px',
+              borderRadius: '12px 0 0 12px',
+            }}
+          >
+            {items.map((item) => {
+              const Icon = item.icon;
+              const hasSubmenu = item.submenu && item.submenu.length > 0;
+              return (
+                <button
+                  key={item.path}
+                  onMouseEnter={() => hasSubmenu && setActiveSubmenu(item.label)}
+                  onClick={() => !hasSubmenu && handleItemClick(item.path)}
+                  className={`w-full text-left px-4 py-3 flex items-center justify-between group transition-all duration-150 rounded-lg
+                  ${activeSubmenu === item.label
+                      ? 'text-[#4deeea] bg-[#4deeea]/10 font-semibold shadow-md'
+                      : theme === 'dark'
+                        ? 'text-white/80 hover:text-[#4deeea] hover:bg-white/[0.04]'
+                        : 'text-black/80 hover:text-[#4deeea] hover:bg-black/[0.04]'
+                    }`}
+                  style={{
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontSize: '14.5px',
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150
+                      ${theme === 'dark'
+                          ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+                          : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+                        }`}
+                    >
+                      <Icon
+                        size={14}
+                        className={`transition-colors duration-150
+                        ${theme === 'dark'
+                            ? 'text-white/60 group-hover:text-[#4deeea]'
+                            : 'text-black/60 group-hover:text-[#4deeea]'
+                          }`}
+                      />
+                    </div>
+                    <span>{item.label}</span>
+                  </div>
+
                   {hasSubmenu && (
-                    <AnimatePresence>
-                      {activeSubmenu === item.label && (
-                        <motion.div
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -10 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute left-full top-0 ml-1"
-                          style={{ minWidth: '280px' }}
-                        >
-                          <div
-                            className="rounded-xl border overflow-visible"
-                            style={{
-                              background: theme === 'dark' ? '#0a0a0a' : '#ffffff',
-                              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
-                              boxShadow: theme === 'dark'
-                                ? '0 10px 40px rgba(0, 0, 0, 0.6)'
-                                : '0 10px 40px rgba(0, 0, 0, 0.15)',
-                            }}
-                          >
-                            <div className="py-2">
-                              {item.submenu.map((subitem) => {
-                                const SubIcon = subitem.icon;
-                                return (
-                                  <button
-                                    key={subitem.path}
-                                    onClick={() => handleItemClick(subitem.path)}
-                                    className={`w-full text-left px-3 py-1 flex items-start gap-3 group transition-all duration-150 ${theme === 'dark'
-                                      ? 'hover:bg-white/[0.04]'
-                                      : 'hover:bg-black/[0.04]'
-                                      }`}
-                                  >
-                                    <div
-                                      className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-150 ${theme === 'dark'
-                                        ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
-                                        : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
-                                        }`}
-                                    >
-                                      <SubIcon
-                                        size={14}
-                                        className={`transition-colors duration-150 ${theme === 'dark'
-                                          ? 'text-white/60 group-hover:text-[#4deeea]'
-                                          : 'text-black/60 group-hover:text-[#4deeea]'
-                                          }`}
-                                      />
-                                    </div>
-
-                                    <div className="flex-1 min-w-0">
-                                      <div
-                                        className={`transition-colors duration-150 ${theme === 'dark'
-                                          ? 'text-white/90 group-hover:text-[#4deeea]'
-                                          : 'text-black/90 group-hover:text-[#4deeea]'
-                                          }`}
-                                        style={{
-                                          fontSize: '14px',
-                                          fontWeight: 500,
-                                          fontFamily: 'Space Grotesk, sans-serif',
-                                          marginBottom: '2px',
-                                        }}
-                                      >
-                                        {subitem.label}
-                                      </div>
-                                      <p
-                                        className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
-                                        style={{
-                                          fontSize: '12px',
-                                          lineHeight: '1.4',
-                                        }}
-                                      >
-                                        {subitem.description}
-                                      </p>
-                                    </div>
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <ChevronRight
+                      size={14}
+                      className={`transition-colors ${activeSubmenu === item.label
+                        ? 'text-[#4deeea]'
+                        : theme === 'dark'
+                          ? 'text-white/40'
+                          : 'text-black/40'
+                        }`}
+                    />
                   )}
-                </div>
+                </button>
               );
             })}
           </div>
+
+          {/* RIGHT SIDE: Submenu (merged visually, same background) */}
+          <div
+            className="flex-1 relative px-2 py-4 bg-gradient-to-br from-[#4deeea]/5 to-transparent"
+            style={{
+              minHeight: '200px',
+              borderRadius: '0 12px 12px 0',
+            }}
+          >
+            {activeSubmenu &&
+              items
+                .find((it) => it.label === activeSubmenu)
+                ?.submenu.map((subitem) => {
+                  const SubIcon = subitem.icon;
+                  return (
+                    <button
+                      key={subitem.path}
+                      onClick={() => handleItemClick(subitem.path)}
+                      className={`w-full text-left px-5 py-2 flex items-start gap-3 group transition-all duration-150 rounded-lg
+                      ${theme === 'dark'
+                          ? 'hover:bg-white/[0.04]'
+                          : 'hover:bg-black/[0.04]'
+                        }`}
+                    >
+                      <div
+                        className={`w-9 h-9 rounded-lg px-2 flex items-center justify-center flex-shrink-0 transition-all duration-150
+                        ${theme === 'dark'
+                            ? 'bg-white/[0.03] group-hover:bg-[#4deeea]/10'
+                            : 'bg-black/[0.03] group-hover:bg-[#4deeea]/10'
+                          }`}
+                      >
+                        <SubIcon
+                          size={18}
+                          className={`transition-colors duration-150
+                          ${theme === 'dark'
+                              ? 'text-white/60 group-hover:text-[#4deeea]'
+                              : 'text-black/60 group-hover:text-[#4deeea]'
+                            }`}
+                        />
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <div
+                          className={`transition-colors duration-150
+                          ${theme === 'dark'
+                              ? 'text-white/90 group-hover:text-[#4deeea]'
+                              : 'text-black/90 group-hover:text-[#4deeea]'
+                            }`}
+                          style={{
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            fontFamily: 'Space Grotesk, sans-serif',
+                            marginBottom: '2px',
+                          }}
+                        >
+                          {subitem.label}
+                        </div>
+                        <p
+                          className={theme === 'dark' ? 'text-white/40' : 'text-black/40'}
+                          style={{
+                            fontSize: '12px',
+                            lineHeight: '1.5',
+                          }}
+                        >
+                          {subitem.description}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+          </div>
         </div>
-      </motion.div>
+      </div>
     );
   };
+
+
+
 
   return (
     <nav
@@ -650,12 +1174,12 @@ export function Navbar({ theme, toggleTheme }) {
               className="relative"
               onMouseEnter={() => {
                 setActiveDropdown('services');
-                setActiveSubmenu("AI");
+                if (!activeSubmenu) setActiveSubmenu("AI");
               }}
-              onMouseLeave={() => {
-                setActiveDropdown(null);
-                setActiveSubmenu(null);
-              }}
+            // onMouseLeave={() => {
+            //   setActiveDropdown(null);
+            //   setActiveSubmenu(null);
+            // }}
             >
               <button
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors duration-200 ${activeDropdown === 'services'
