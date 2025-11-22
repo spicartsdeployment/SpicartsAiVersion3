@@ -2,9 +2,15 @@ import { motion } from 'motion/react';
 import { Calendar, Clock, ArrowRight, TrendingUp, Search } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import { path } from 'motion/react-client';
 
 function BlogPage({ theme }) {
   const onNavigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    onNavigate(path);
+  };
   const featuredPost = {
     title: 'The Future of AI Voice Technology: Trends and Predictions for 2025',
     excerpt: 'Explore how voice AI is transforming industries and what innovations are on the horizon for the next generation of conversational.',
@@ -13,6 +19,7 @@ function BlogPage({ theme }) {
     date: 'Oct 20, 2025',
     readTime: '8 min read',
     author: 'Dr. Sarah Chen',
+
   };
 
   const blogPosts = [
@@ -23,6 +30,7 @@ function BlogPage({ theme }) {
       category: 'Tutorial',
       date: 'Oct 18, 2025',
       readTime: '12 min read',
+      path: '/blogs/ai-voice-agents',
     },
     {
       title: 'How AI Automation is Revolutionizing Manufacturing',
@@ -31,6 +39,7 @@ function BlogPage({ theme }) {
       category: 'Robotics',
       date: 'Oct 15, 2025',
       readTime: '6 min read',
+      path: '/blogs/manufacturing',
     },
     {
       title: 'Generative AI: From GPT to Custom Language Models',
@@ -39,6 +48,7 @@ function BlogPage({ theme }) {
       category: 'AI Development',
       date: 'Oct 12, 2025',
       readTime: '10 min read',
+      path: '/blogs/generative-ai',
     },
     {
       title: 'Computer Vision Applications in Real-World Scenarios',
@@ -47,6 +57,7 @@ function BlogPage({ theme }) {
       category: 'Vision AI',
       date: 'Oct 10, 2025',
       readTime: '7 min read',
+      path: '/blogs/computer-vision',
     },
     {
       title: 'IoT and Smart Homes: The Connected Future',
@@ -55,6 +66,7 @@ function BlogPage({ theme }) {
       category: 'IoT',
       date: 'Oct 8, 2025',
       readTime: '5 min read',
+      path: '/blogs/smart-homes',
     },
     {
       title: 'Quantum Machine Learning: The Next Frontier',
@@ -63,6 +75,7 @@ function BlogPage({ theme }) {
       category: 'Research',
       date: 'Oct 5, 2025',
       readTime: '15 min read',
+      path: '/blogs/quantum-machine-learning',
     },
   ];
 
@@ -170,7 +183,7 @@ function BlogPage({ theme }) {
             }}
           >
             <div
-              onClick={() => onNavigate('/resources/blog/post')}
+              onClick={() => handleNavigate('/resources/blog/post')}
               className="relative rounded-2xl overflow-hidden group cursor-pointer"
             >
               <ImageWithFallback
@@ -257,7 +270,7 @@ function BlogPage({ theme }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => onNavigate('/resources/blog/post')}
+                onClick={() => post.path && handleNavigate(post.path)}
                 className="group cursor-pointer rounded-2xl overflow-hidden border hover:border-[#4deeea]/50 transition-all duration-300"
                 style={{
                   background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.8)',

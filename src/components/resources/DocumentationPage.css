@@ -1,0 +1,13 @@
+@media (max-width: 600px) {
+    .minh1 {
+        font-size: 32px !important;
+        font-weight: 600 !important;
+
+    }
+
+    .search-box {
+        display: flex;
+        flex-direction: column;
+
+    }
+}

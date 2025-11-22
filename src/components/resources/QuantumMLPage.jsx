@@ -156,8 +156,8 @@ function QuantumMLPage({ theme, onNavigate }) {
 
                 <button
                   className={`px-8 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
-                      ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                      : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                    ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                    : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                     }`}
                   style={{
                     fontWeight: 600,
@@ -532,8 +532,8 @@ function QuantumMLPage({ theme, onNavigate }) {
               <button
                 onClick={() => onNavigate('about')}
                 className={`px-10 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
-                    ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
-                    : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
+                  ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
+                  : 'border-black/20 hover:border-[#4deeea]/50 hover:bg-black/5'
                   }`}
                 style={{
                   fontWeight: 600,

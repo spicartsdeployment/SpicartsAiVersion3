@@ -42,6 +42,30 @@ import CaseStudiesPage from './components/resources/CaseStudiesPage';
 import QuantumMLPage from './components/resources/QuantumMLPage';
 import { BlogPostPage } from './components/resources/BlogPostPage';
 
+import { VoiceAssistantBlogPage } from './components/resources/VoiceAssistantBlogPage';
+// import { ManufacturingAIBlogPage } from './components/resources/ManufacturingAIBlogPage';
+// import { GenerativeAIBlogPage } from './components/resources/GenerativeAIBlogPage';
+// import { ComputerVisionBlogPage } from './components/resources/ComputerVisionBlogPage';
+// import { SmartHomesBlogPage } from './components/resources/SmartHomesBlogPage';
+// import { QuantumMachineLearningBlogPage } from './components/resources/QuantumMachineLearningBlogPage';
+
+
+
+//blogs components
+
+import { BlogPost_AI_VoiceAgents } from './components/resources/Blogs/BlogPost_AI_VoiceAgents.jsx';
+import { BlogPost_ManufacturingAI } from './components/resources/Blogs/BlogPost_ManufacturingAI.jsx';
+import { BlogPost_GenerativeAI } from './components/resources/Blogs/BlogPost_GenerativeAI.jsx';
+import { BlogPost_ComputerVision } from './components/resources/Blogs/BlogPost_ComputerVision.jsx';
+import { BlogPost_SmartHomes } from './components/resources/Blogs/BlogPost_SmartHomes.jsx';
+import { BlogPost_QuantumMachineLearning } from './components/resources/Blogs/BlogPost_QuantumMachineLearning.jsx';
+
+
+
+
+
+
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -132,8 +156,25 @@ export default function App() {
             <Route path="/products/platform" element={<DeveloperPlatformPage theme={theme} />} />
             <Route path="/resources/blog/post" element={<BlogPostPage theme={theme} />} />
             <Route path="/resources/docs" element={<DocumentationPage theme={theme} />} />
+            <Route path="/resources/docs/article" element={<DocArticlePage theme={theme} />} />
             <Route path="/resources/case-studies" element={<CaseStudiesPage theme={theme} />} />
             <Route path="/resources/quantum-ml" element={<QuantumMLPage theme={theme} />} />
+            <Route path='/blogs/voice-assistantblog' element={<VoiceAssistantBlogPage theme={theme} />} />
+            {/* <Route path='/blogs/manufacturing-ai-blog' element={<ManufacturingAIBlogPage theme={theme} />} />
+            <Route path='/blogs/generative-ai-blog' element={<GenerativeAIBlogPage theme={theme} />} />
+            <Route path='/blogs/computer-vision-blog' element={<ComputerVisionBlogPage theme={theme} />} />
+            <Route path='/blogs/smart-homes-blog' element={<SmartHomesBlogPage theme={theme} />} />
+            <Route path='/blogs/quantum-ml-blog' element={<QuantumMachineLearningBlogPage theme={theme} />} /> */}
+
+            {/* Blog Post: AI Voice Agents */}
+            <Route path='/blogs/ai-voice-agents' element={<BlogPost_AI_VoiceAgents theme={theme} />} />
+            <Route path='/blogs/manufacturing' element={<BlogPost_ManufacturingAI theme={theme} />} />
+            <Route path='/blogs/generative-ai' element={<BlogPost_GenerativeAI theme={theme} />} />
+            <Route path='/blogs/computer-vision' element={<BlogPost_ComputerVision theme={theme} />} />
+            <Route path='/blogs/smart-homes' element={<BlogPost_SmartHomes theme={theme} />} />
+            <Route path='/blogs/quantum-machine-learning' element={<BlogPost_QuantumMachineLearning theme={theme} />} />
+
+
 
             {/* Fallback */}
             <Route path="*" element={<HomePage theme={theme} />} />

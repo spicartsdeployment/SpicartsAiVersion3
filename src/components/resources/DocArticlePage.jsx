@@ -1,8 +1,25 @@
 import { motion } from 'motion/react';
 import { ArrowLeft, Book, ChevronRight, Search, Copy, Check, Terminal, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './DocArticlePage.css';
+
+
+
+
 
 function DocArticlePage({ theme, onNavigate }) {
+
+  const [activeSidebar, setActiveSidebar] = useState('Quick Start');
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  };
+
+
   const [copiedCode, setCopiedCode] = useState(null);
 
   const handleCopyCode = (code, id) => {
@@ -10,6 +27,8 @@ function DocArticlePage({ theme, onNavigate }) {
     setCopiedCode(id);
     setTimeout(() => setCopiedCode(null), 2000);
   };
+
+
 
   const tableOfContents = [
     { id: 'installation', label: 'Installation' },
@@ -89,8 +108,8 @@ const response = await agent.speak({
         <button
           onClick={() => handleCopyCode(code, id)}
           className={`flex items-center gap-2 px-3 py-1 rounded-lg transition-all ${theme === 'dark'
-              ? 'hover:bg-white/5 text-white/70 hover:text-white'
-              : 'hover:bg-black/5 text-black/70 hover:text-black'
+            ? 'hover:bg-white/5 text-white/70 hover:text-white'
+            : 'hover:bg-black/5 text-black/70 hover:text-black'
             }`}
           style={{ fontSize: '12px', fontFamily: 'Space Grotesk, sans-serif' }}
         >
@@ -143,73 +162,327 @@ const response = await agent.speak({
 
   return (
     <div className={theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}>
-      <div className="pt-24 pb-20 px-6">
+      <div className="pt-[90px] pb-20 px-4 md:px-6 doc-page-wrapper">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid lg:grid-cols-[280px,1fr,240px] gap-12">
             {/* Left Sidebar - Navigation */}
-            <aside className="hidden lg:block">
+            <aside className="block">
               <div className="sticky top-24">
-                <button
-                  onClick={() => onNavigate('resources/docs')}
+                {/* <button
+                  onClick={() => handleNavigate('/resources/docs')}
                   className={`flex items-center gap-2 mb-8 hover:text-[#4deeea] transition-colors ${theme === 'dark' ? 'text-white/70' : 'text-black/70'
                     }`}
                   style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}
                 >
                   <ArrowLeft size={18} />
                   Documentation
-                </button>
+                </button> */}
 
-                <div className="space-y-1">
-                  <div
-                    className={`mb-2 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    Getting Started
-                  </div>
-                  {['Quick Start', 'Installation', 'Configuration', 'First Agent'].map((item) => (
-                    <button
-                      key={item}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${item === 'Installation'
-                          ? 'bg-[#4deeea]/10 text-[#4deeea] border border-[#4deeea]/30'
-                          : theme === 'dark'
-                            ? 'text-white/70 hover:text-white hover:bg-white/5'
-                            : 'text-black/70 hover:text-black hover:bg-black/5'
-                        }`}
-                      style={{ fontSize: '14px', fontFamily: 'Space Grotesk, sans-serif' }}
-                    >
-                      {item}
-                    </button>
-                  ))}
 
-                  <div
-                    className={`mt-6 mb-2 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
-                    style={{
-                      fontSize: '11px',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    API Reference
-                  </div>
-                  {['Voice AI', 'Agent Kit', 'Authentication', 'Webhooks'].map((item) => (
-                    <button
-                      key={item}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${theme === 'dark'
-                          ? 'text-white/70 hover:text-white hover:bg-white/5'
-                          : 'text-black/70 hover:text-black hover:bg-black/5'
-                        }`}
-                      style={{ fontSize: '14px', fontFamily: 'Space Grotesk, sans-serif' }}
+
+                <div className='main-card'>
+                  <div className="space-y-1 sidebar">
+                    <div
+                      className={`mb-2 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                      }}
                     >
-                      {item}
-                    </button>
-                  ))}
+                      Getting Started
+                    </div>
+                    {['Quick Start', 'Installation', 'Configuration', 'First Agent'].map((item) => (
+                      <a key={item}
+                        href={`#${item.toLowerCase()}`}>
+                        <button
+                          onClick={() => setActiveSidebar(item)}
+
+                          className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${activeSidebar === item
+                            ? 'bg-[#4deeea]/10 text-[#4deeea] border border-[#4deeea]/30'
+                            : theme === 'dark'
+                              ? 'text-white/70 hover:text-white hover:bg-white/5'
+                              : 'text-black/70 hover:text-black hover:bg-black/5'
+                            }`}
+                          style={{ fontSize: '14px', fontFamily: 'Space Grotesk, sans-serif', width: '160px', paddingLeft: '16px' }}
+                        >
+                          {item}
+                        </button>
+                      </a>
+                    ))}
+
+                    <div
+                      className={`mt-6 mb-2 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                      }}
+                    >
+                      API Reference
+                    </div>
+                    {['Voice AI', 'Agent Kit', 'Authentication', 'Webhooks'].map((item) => (
+                      <a key={item}
+                        href={`#${item.toLowerCase()}`}>
+                        <button
+                          onClick={() => setActiveSidebar(item)}
+
+
+                          className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${activeSidebar === item
+                            ? 'bg-[#4deeea]/10 text-[#4deeea] border border-[#4deeea]/30'
+                            : theme === 'dark'
+                              ? 'text-white/70 hover:text-white hover:bg-white/5'
+                              : 'text-black/70 hover:text-black hover:bg-black/5'
+                            }`}
+                          style={{ fontSize: '14px', fontFamily: 'Space Grotesk, sans-serif', width: '160px', paddingLeft: '16px' }}
+                        >
+                          {item}
+                        </button>
+                      </a>
+                    ))}
+                  </div>
+                  <div className='main-content'>
+
+
+                    <div className={`flex items-center gap-2 mb-6 text-sm ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
+                      <span>Getting Started</span>
+                      <ChevronRight size={14} />
+                      <span className="text-[#4deeea]">Installation</span>
+                    </div>
+                    <h1
+                      className="mb-4"
+                      style={{
+                        fontSize: '42px',
+                        fontWeight: 700,
+                        lineHeight: '1.1',
+                        fontFamily: 'Space Grotesk, sans-serif',
+                      }}
+                    >
+                      Installation & Setup
+                    </h1>
+
+                    <p
+                      className={theme === 'dark' ? 'text-white/60' : 'text-black/60'}
+                      style={{ fontSize: '18px', lineHeight: '1.7', marginBottom: '32px' }}
+                    >
+                      Learn how to install and configure the SPicArts Voice AI SDK in your project
+                    </p>
+                    {/* Installation */}
+                    <section id="installation" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Installation
+                      </h2>
+
+                      <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
+                        Install the Voice AI SDK using your preferred package manager:
+                      </p>
+
+                      <CodeBlock code={codeExample1} language="bash" id="install" />
+
+                      <InfoBox>
+                        <strong>Note:</strong> The Voice AI SDK requires Node.js version 16 or higher.
+                      </InfoBox>
+                    </section>
+
+                    {/* Configuration */}
+                    <section id="configuration" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Configuration
+                      </h2>
+
+                      <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
+                        Import and configure the SDK with your API credentials:
+                      </p>
+
+                      <CodeBlock code={codeExample2} language="javascript" id="config" />
+
+                      <InfoBox type="warning">
+                        <strong>Security Warning:</strong> Never commit your API keys to version control. Use environment variables instead.
+                      </InfoBox>
+                    </section>
+
+                    {/* Authentication */}
+                    <section id="authentication" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Authentication
+                      </h2>
+
+                      <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
+                        The SDK uses API key authentication. You can obtain your API key from the{' '}
+                        <span
+                          onClick={() => onNavigate('products/platform')}
+                          className="text-[#4deeea] cursor-pointer hover:underline"
+                        >
+                          Developer Platform
+                        </span>.
+                      </p>
+
+                      <div
+                        className="p-4 rounded-xl"
+                        style={{
+                          background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
+                        }}
+                      >
+                        <h4 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '12px' }}>
+                          API Key Permissions
+                        </h4>
+                        <ul style={{ fontSize: '14px', lineHeight: '1.7', paddingLeft: '20px' }}>
+                          <li>Read/Write access to Voice AI API</li>
+                          <li>Access to pre-trained voice models</li>
+                          <li>Usage analytics and monitoring</li>
+                        </ul>
+                      </div>
+                    </section>
+
+                    {/* Basic Usage */}
+                    <section id="basic-usage" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Basic Usage
+                      </h2>
+
+                      <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
+                        Here's a simple example to create your first voice AI agent:
+                      </p>
+
+                      <CodeBlock code={codeExample3} language="javascript" id="usage" />
+                    </section>
+
+                    {/* Advanced Features */}
+                    <section id="advanced" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Advanced Features
+                      </h2>
+
+                      <div className="space-y-4">
+                        <div>
+                          <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
+                            Custom Voice Cloning
+                          </h4>
+                          <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
+                            Clone any voice with just 30 seconds of audio samples using our advanced neural network.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
+                            Multi-language Support
+                          </h4>
+                          <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
+                            Support for 40+ languages with automatic language detection and translation.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
+                            Real-time Streaming
+                          </h4>
+                          <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
+                            Stream audio in real-time with low latency for interactive conversations.
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+
+                    {/* Error Handling */}
+                    <section id="error-handling" className="mb-12">
+                      <h2
+                        style={{
+                          fontSize: '28px',
+                          fontWeight: 700,
+                          marginBottom: '16px',
+                          fontFamily: 'Space Grotesk, sans-serif',
+                        }}
+                      >
+                        Error Handling
+                      </h2>
+
+                      <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
+                        Implement proper error handling to manage API rate limits and other errors:
+                      </p>
+
+                      <CodeBlock code={codeExample4} language="javascript" id="errors" />
+                    </section>
+
+                    <div
+                      className="mt-16 p-8 rounded-2xl border"
+                      style={{
+                        background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)',
+                        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                      }}
+                    >
+                      <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '16px' }}>
+                        Next Steps
+                      </h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {[
+                          { title: 'Building Your First Agent', desc: 'Complete tutorial on creating a voice AI agent' },
+                          { title: 'API Reference', desc: 'Detailed API documentation and examples' },
+                          { title: 'Best Practices', desc: 'Tips for optimizing voice AI performance' },
+                          { title: 'Code Examples', desc: 'Real-world implementation examples' },
+                        ].map((item) => (
+                          <button
+                            key={item.title}
+                            className={`text-left p-4 rounded-xl border transition-all hover:border-[#4deeea]/50 ${theme === 'dark'
+                              ? 'hover:bg-white/5'
+                              : 'hover:bg-black/5'
+                              }`}
+                            style={{
+                              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                            }}
+                          >
+                            <div style={{ fontSize: '16px', fontWeight: 600, marginBottom: '4px', color: '#4deeea' }}>
+                              {item.title}
+                            </div>
+                            <div className={theme === 'dark' ? 'text-white/60' : 'text-black/60'} style={{ fontSize: '13px' }}>
+                              {item.desc}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+
+
+                  </div>
                 </div>
+
               </div>
             </aside>
 
@@ -221,12 +494,11 @@ const response = await agent.speak({
                 transition={{ duration: 0.6 }}
               >
                 {/* Breadcrumb */}
-                <div className={`flex items-center gap-2 mb-6 text-sm ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
+                {/* <div className={`flex items-center gap-2 mb-6 text-sm ${theme === 'dark' ? 'text-white/60' : 'text-black/60'}`}>
                   <span>Getting Started</span>
                   <ChevronRight size={14} />
                   <span className="text-[#4deeea]">Installation</span>
                 </div>
-
                 <h1
                   className="mb-4"
                   style={{
@@ -244,227 +516,21 @@ const response = await agent.speak({
                   style={{ fontSize: '18px', lineHeight: '1.7', marginBottom: '32px' }}
                 >
                   Learn how to install and configure the SPicArts Voice AI SDK in your project
-                </p>
+                </p> */}
 
-                <div
+                {/* <div
                   className="h-px mb-12"
                   style={{ background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' }}
-                />
+                /> */}
 
-                {/* Installation */}
-                <section id="installation" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Installation
-                  </h2>
-
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
-                    Install the Voice AI SDK using your preferred package manager:
-                  </p>
-
-                  <CodeBlock code={codeExample1} language="bash" id="install" />
-
-                  <InfoBox>
-                    <strong>Note:</strong> The Voice AI SDK requires Node.js version 16 or higher.
-                  </InfoBox>
-                </section>
-
-                {/* Configuration */}
-                <section id="configuration" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Configuration
-                  </h2>
-
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
-                    Import and configure the SDK with your API credentials:
-                  </p>
-
-                  <CodeBlock code={codeExample2} language="javascript" id="config" />
-
-                  <InfoBox type="warning">
-                    <strong>Security Warning:</strong> Never commit your API keys to version control. Use environment variables instead.
-                  </InfoBox>
-                </section>
-
-                {/* Authentication */}
-                <section id="authentication" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Authentication
-                  </h2>
-
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
-                    The SDK uses API key authentication. You can obtain your API key from the{' '}
-                    <span
-                      onClick={() => onNavigate('products/platform')}
-                      className="text-[#4deeea] cursor-pointer hover:underline"
-                    >
-                      Developer Platform
-                    </span>.
-                  </p>
-
-                  <div
-                    className="p-4 rounded-xl"
-                    style={{
-                      background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
-                    }}
-                  >
-                    <h4 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '12px' }}>
-                      API Key Permissions
-                    </h4>
-                    <ul style={{ fontSize: '14px', lineHeight: '1.7', paddingLeft: '20px' }}>
-                      <li>Read/Write access to Voice AI API</li>
-                      <li>Access to pre-trained voice models</li>
-                      <li>Usage analytics and monitoring</li>
-                    </ul>
-                  </div>
-                </section>
-
-                {/* Basic Usage */}
-                <section id="basic-usage" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Basic Usage
-                  </h2>
-
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
-                    Here's a simple example to create your first voice AI agent:
-                  </p>
-
-                  <CodeBlock code={codeExample3} language="javascript" id="usage" />
-                </section>
-
-                {/* Advanced Features */}
-                <section id="advanced" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Advanced Features
-                  </h2>
-
-                  <div className="space-y-4">
-                    <div>
-                      <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
-                        Custom Voice Cloning
-                      </h4>
-                      <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
-                        Clone any voice with just 30 seconds of audio samples using our advanced neural network.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
-                        Multi-language Support
-                      </h4>
-                      <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
-                        Support for 40+ languages with automatic language detection and translation.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
-                        Real-time Streaming
-                      </h4>
-                      <p style={{ fontSize: '14px', lineHeight: '1.7', opacity: 0.8 }}>
-                        Stream audio in real-time with low latency for interactive conversations.
-                      </p>
-                    </div>
-                  </div>
-                </section>
-
-                {/* Error Handling */}
-                <section id="error-handling" className="mb-12">
-                  <h2
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: 700,
-                      marginBottom: '16px',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                    }}
-                  >
-                    Error Handling
-                  </h2>
-
-                  <p style={{ fontSize: '16px', lineHeight: '1.7', marginBottom: '16px' }}>
-                    Implement proper error handling to manage API rate limits and other errors:
-                  </p>
-
-                  <CodeBlock code={codeExample4} language="javascript" id="errors" />
-                </section>
 
                 {/* Next Steps */}
-                <div
-                  className="mt-16 p-8 rounded-2xl border"
-                  style={{
-                    background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)',
-                    borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                  }}
-                >
-                  <h3 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '16px' }}>
-                    Next Steps
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                      { title: 'Building Your First Agent', desc: 'Complete tutorial on creating a voice AI agent' },
-                      { title: 'API Reference', desc: 'Detailed API documentation and examples' },
-                      { title: 'Best Practices', desc: 'Tips for optimizing voice AI performance' },
-                      { title: 'Code Examples', desc: 'Real-world implementation examples' },
-                    ].map((item) => (
-                      <button
-                        key={item.title}
-                        className={`text-left p-4 rounded-xl border transition-all hover:border-[#4deeea]/50 ${theme === 'dark'
-                            ? 'hover:bg-white/5'
-                            : 'hover:bg-black/5'
-                          }`}
-                        style={{
-                          borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                        }}
-                      >
-                        <div style={{ fontSize: '16px', fontWeight: 600, marginBottom: '4px', color: '#4deeea' }}>
-                          {item.title}
-                        </div>
-                        <div className={theme === 'dark' ? 'text-white/60' : 'text-black/60'} style={{ fontSize: '13px' }}>
-                          {item.desc}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
+
               </motion.div>
             </article>
 
             {/* Right Sidebar - Table of Contents */}
-            <aside className="hidden xl:block">
+            {/* <aside className="hidden xl:block">
               <div className="sticky top-24">
                 <div
                   className={`mb-3 ${theme === 'dark' ? 'text-white/50' : 'text-black/50'}`}
@@ -483,8 +549,8 @@ const response = await agent.speak({
                       key={item.id}
                       href={`#${item.id}`}
                       className={`block py-1 border-l-2 pl-3 transition-colors ${theme === 'dark'
-                          ? 'border-white/10 text-white/60 hover:text-white hover:border-[#4deeea]'
-                          : 'border-black/10 text-black/60 hover:text-black hover:border-[#4deeea]'
+                        ? 'border-white/10 text-white/60 hover:text-white hover:border-[#4deeea]'
+                        : 'border-black/10 text-black/60 hover:text-black hover:border-[#4deeea]'
                         }`}
                       style={{ fontSize: '13px' }}
                     >
@@ -493,7 +559,7 @@ const response = await agent.speak({
                   ))}
                 </div>
               </div>
-            </aside>
+            </aside> */}
           </div>
         </div>
       </div>

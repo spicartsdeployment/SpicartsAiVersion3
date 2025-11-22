@@ -198,7 +198,11 @@ export function BlogPostPage({ theme, onNavigate }) {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="prose max-w-none"
                     >
-                        <p style={{ fontSize: '18px', lineHeight: '1.8', marginBottom: '24px' }}>
+                        <p style={{
+                            fontSize: '18px',
+                            lineHeight: '1.8',
+                            marginBottom: '24px'
+                        }}>
                             The landscape of customer service is undergoing a revolutionary transformation, driven by advances in artificial intelligence and natural language processing. Voice AI agents are no longer a futuristic concept—they're here, and they're reshaping how businesses interact with their customers.
                         </p>
 

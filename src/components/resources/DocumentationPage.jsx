@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { FileText, Search, Book, Code, Zap, Settings, Database, Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { useNavigate } from 'react-router-dom';
+import "./DocumentationPage.css";
 
 function DocumentationPage({ theme, onNavigate }) {
 
@@ -82,7 +83,7 @@ function DocumentationPage({ theme, onNavigate }) {
             className="text-center mb-12"
           >
             <h1
-              className="mb-6"
+              className="mb-6 minh1 "
               style={{
                 fontSize: '56px',
                 fontWeight: 700,
@@ -107,7 +108,7 @@ function DocumentationPage({ theme, onNavigate }) {
             {/* Search Bar */}
             <div className="max-w-[700px] mx-auto">
               <div
-                className="flex items-center gap-4 px-6 py-4 rounded-xl border"
+                className="flex items-center gap-4 px-6 py-4 rounded-xl border  search-box"
                 style={{
                   background: theme === 'dark' ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
                   borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
@@ -219,13 +220,13 @@ function DocumentationPage({ theme, onNavigate }) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {popularDocs.map((doc, index) => (
-              <motion.div
+              <motion.button
                 key={doc.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onClick={() => handleNavigate('/resources/docs/article')}
+                onClick={() => handleNavigate('resources/docs/article')}
                 className="group cursor-pointer rounded-2xl overflow-hidden border hover:border-[#4deeea]/50 transition-all duration-300"
                 style={{
                   background: theme === 'dark' ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.8)',
@@ -278,7 +279,7 @@ function DocumentationPage({ theme, onNavigate }) {
                     <ArrowRight size={14} />
                   </div>
                 </div>
-              </motion.div>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -328,6 +329,7 @@ function DocumentationPage({ theme, onNavigate }) {
                   fontSize: '15px',
                   fontFamily: 'Space Grotesk, sans-serif',
                 }}
+                onClick={() => handleNavigate('demo')}
               >
                 Join Community
               </button>
