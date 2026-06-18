@@ -11,6 +11,7 @@ export function VoiceAssistantPage({ theme, onNavigate }) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+
     const features = [
         {
             icon: Brain,

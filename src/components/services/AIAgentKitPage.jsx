@@ -1,7 +1,9 @@
 import { ServiceDetailPage } from '../ServiceDetailPage';
 import { Bot, Sparkles, Zap, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 function AIAgentKitPage({ theme, onNavigate }) {
+  const navigate = useNavigate();
   const serviceData = {
     icon: Bot,
     title: 'AI Agent Kit',

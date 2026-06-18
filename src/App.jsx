@@ -29,6 +29,11 @@ import MobileDevelopmentPage from './components/services/MobileDevelopmentPage';
 import DesktopDevelopmentPage from './components/services/DesktopDevelopmentPage';
 import EmbeddedDevelopmentPage from './components/services/EmbeddedDevelopmentPage';
 
+// Security Services
+import CloudSecurityPage from './components/services/CloudSecurityPage';
+import ApplicationSecurityPage from './components/services/ApplicationSecurityPage';
+import PenetrationTestingPage from './components/services/PenetrationTestingPage';
+
 // Product Pages
 import { VoiceAssistantPage } from './components/products/VoiceAssistantPage';
 import { VoiceCallAgentPage } from './components/products/VoiceCallAgentPage';
@@ -90,7 +95,7 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'dark' : 'dark');
 
   return (
     <Router>
@@ -126,6 +131,11 @@ export default function App() {
             <Route path="/web-development" element={<WebDevelopmentPage theme={theme} />} />
             <Route path="/mobile-development" element={<MobileDevelopmentPage theme={theme} />} />
             <Route path="/desktop-development" element={<DesktopDevelopmentPage theme={theme} />} />
+
+            {/* Security Services - Updated paths */}
+            <Route path="/cloud-security" element={<CloudSecurityPage theme={theme} />} />
+            <Route path="/application-security" element={<ApplicationSecurityPage theme={theme} />} />
+            <Route path="/penetration-testing" element={<PenetrationTestingPage theme={theme} />} />
 
             {/* Product Pages - Updated paths */}
             <Route path="/voice-assistant" element={<VoiceAssistantPage theme={theme} />} />

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export function VoiceCallAgentPage({ theme, onNavigate }) {
 
     const navigate = useNavigate();
+
     const handleNavigate = (path) => {
         navigate(`/${path}`);
         window.scrollTo({ top: 0, behavior: 'smooth' });

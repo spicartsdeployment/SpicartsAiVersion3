@@ -1,6 +1,35 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon, ChevronDown, ChevronRight, Bot, Mic2, Sparkles, Eye, Atom, Zap, Wifi, Cpu, Globe, Smartphone, Code, FileText, Newspaper, BookOpen, Phone, Monitor } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Sun,
+  Moon,
+  ChevronDown,
+  ChevronRight,
+  Bot,
+  Mic2,
+  Sparkles,
+  Eye,
+  Atom,
+  Zap,
+  Wifi,
+  Cpu,
+  Globe,
+  Smartphone,
+  Code,
+  FileText,
+  Newspaper,
+  BookOpen,
+  Phone,
+  Monitor,
+  Shield,
+  Cloud,
+  Lock,
+  Server,
+  Search,
+  UserCheck,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logoImage from '../assets/images/logo-white.png';
 // import { div, img } from 'motion/react-client';
@@ -52,6 +81,29 @@ export function Navbar({ theme, toggleTheme }) {
         { icon: Monitor, label: 'Desktop App Development', description: 'Windows, macOS & Linux apps', path: '/desktop-development' },
       ],
     },
+    {
+      label: 'Cybersecurity',
+      items: [
+        {
+          icon: Shield,
+          label: 'Application Security',
+          description: 'Secure web and mobile applications',
+          path: '/application-security',
+        },
+        {
+          icon: Cloud,
+          label: 'Cloud Security',
+          description: 'Protect cloud infrastructure and services',
+          path: '/cloud-security',
+        },
+        {
+          icon: Lock,
+          label: 'Penetration Testing',
+          description: 'Identify and remediate security vulnerabilities',
+          path: '/penetration-testing',
+        },
+      ],
+    }
   ];
 
   // Products - Direct items (no categories)
@@ -84,16 +136,16 @@ export function Navbar({ theme, toggleTheme }) {
 
   // Resources - Direct items with one having submenu
   const resourcesItems = [
-    {
-      icon: FileText, label: 'Documentation', description: 'Technical guides & API docs', path: '/documentation',
-      submenu: [
-        {
-          image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-        }
+    // {
+    //   icon: FileText, label: 'Documentation', description: 'Technical guides & API docs', path: '/documentation',
+    //   submenu: [
+    //     {
+    //       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
+    //     }
 
-      ]
+    //   ]
 
-    },
+    // },
     {
       icon: BookOpen, label: 'Case Studies', description: 'Customer success stories', path: '/case-studies',
       submenu: [
@@ -711,7 +763,7 @@ export function Navbar({ theme, toggleTheme }) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             {/* Services Dropdown */}
             <div
               className="relative"
@@ -725,7 +777,7 @@ export function Navbar({ theme, toggleTheme }) {
             // }}
             >
               <button
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors duration-200 ${activeDropdown === 'services'
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-200 ${activeDropdown === 'services'
                   ? 'text-[#4deeea]'
                   : theme === 'dark'
                     ? 'text-white/80 hover:text-white hover:bg-white/[0.05]'
@@ -829,7 +881,7 @@ export function Navbar({ theme, toggleTheme }) {
             </div>
 
             {/* Regular nav items */}
-            <button
+            {/* <button
               onClick={() => handleItemClick('/pricing')}
               className={`px-3 py-2 rounded-lg transition-colors duration-200 ${theme === 'dark'
                 ? 'text-white/80 hover:text-white hover:bg-white/[0.05]'
@@ -842,7 +894,7 @@ export function Navbar({ theme, toggleTheme }) {
               }}
             >
               Pricing
-            </button>
+            </button> */}
 
             <button
               onClick={() => handleItemClick('/about')}
@@ -862,7 +914,7 @@ export function Navbar({ theme, toggleTheme }) {
 
           {/* Right Side Actions */}
           <div className="hidden lg:flex items-center gap-2">
-            <button
+            {/* <button
               onClick={toggleTheme}
               className={`p-2 rounded-lg transition-all duration-200 ${theme === 'dark'
                 ? 'hover:bg-white/[0.05] text-white/80 hover:text-white'
@@ -870,7 +922,7 @@ export function Navbar({ theme, toggleTheme }) {
                 }`}
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            </button> */}
 
             {/* <button
               onClick={() => handleItemClick('/login')}

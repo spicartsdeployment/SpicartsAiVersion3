@@ -42,7 +42,7 @@ export function Footer({ theme, onNavigate }) {
     };
 
     const socialLinks = [
-        { icon: Linkedin, href: 'https://www.linkedin.com/in/spicarts-ai-llp-762169344/', label: 'LinkedIn' },
+        { icon: Linkedin, href: 'https://www.linkedin.com/company/spicartsai/', label: 'LinkedIn' },
         { icon: Instagram, href: 'https://www.instagram.com/spicarts_ai/', label: 'Instagram' },
         // { icon: Github, href: '#', label: 'GitHub' },
         { icon: Youtube, href: 'https://www.youtube.com/@SpicArtsAI', label: 'YouTube' },
@@ -221,7 +221,7 @@ export function Footer({ theme, onNavigate }) {
 
                         <div className="mt-8 space-y-3">
                             <a
-                                href="mailto:info@spicartsai.com"
+                                href="mailto:services@spicarts.ai"
                                 className={`flex items-center gap-2 text-sm transition-colors ${theme === 'dark'
                                     ? 'text-gray-400 hover:text-[#4deeea]'
                                     : 'text-gray-600 hover:text-[#4deeea]'
@@ -231,7 +231,7 @@ export function Footer({ theme, onNavigate }) {
                                 services@spicarts.ai
                             </a>
                             <a
-                                href="tel:+15551234567"
+                                href="tel:+91 8328015851"
                                 className={`flex items-center gap-2 text-sm transition-colors ${theme === 'dark'
                                     ? 'text-gray-400 hover:text-[#4deeea]'
                                     : 'text-gray-600 hover:text-[#4deeea]'
@@ -241,13 +241,16 @@ export function Footer({ theme, onNavigate }) {
                                 +91 8328015851
 
                             </a>
-                            <div
+
+
+                            <a href="https://www.google.com/maps/dir//Spicarts+AI+LLP,+Vaishnavi+Arcade,+401,+beside+Sri+Chaitanya+Public+School,+Kukatpally+Housing+Board+Colony,+Hyderabad,+Telangana+500085/@14.8954096,78.0337274,11.04z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3bcb91c0472e6fc3:0x560ae06748a3bd92!2m2!1d78.3885813!2d17.4952015?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
                                 className={`flex items-start gap-2 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                    }`}
-                            >
+                                    }`}>
                                 <MapPin size={16} className="text-[#4deeea] mt-0.5" />
                                 Hyderabad, Telangana, 500085.
-                            </div>
+
+                            </a>
+
                         </div>
                     </div>
                 </div>

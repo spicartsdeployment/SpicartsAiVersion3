@@ -1019,7 +1019,7 @@ export function HomePage({ theme, onNavigate }) {
       </section>
 
       {/* Site Map - All Pages */}
-      // Replace the entire sitemap section (around lines 1025-1065) with this updated version:
+
 
       {/* Site Map - All Pages */}
       {/* <section className="py-24 px-6">

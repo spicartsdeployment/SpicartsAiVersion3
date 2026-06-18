@@ -7,7 +7,7 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {
-        navigate(path);
+        navigate(`/${path}`);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -46,7 +46,7 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <motion.button
-                                    onClick={() => onNavigate('demo')}
+                                    onClick={() => handleNavigate('demo')}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className={`px-10 py-5 rounded-2xl bg-gradient-to-r ${service.gradient} text-white font-medium shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2`}
@@ -55,7 +55,7 @@ export function ServiceDetailPage({ theme, onNavigate, service }) {
                                     <ArrowRight size={20} />
                                 </motion.button>
                                 <motion.button
-                                    onClick={() => onNavigate('demo')}
+                                    onClick={() => handleNavigate('demo')}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     className={`px-10 py-5 rounded-2xl transition-all duration-300 font-medium ${theme === 'dark'

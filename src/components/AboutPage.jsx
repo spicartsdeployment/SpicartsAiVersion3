@@ -195,7 +195,7 @@ export function AboutPage({ theme, onNavigate }) {
             </section>
 
             {/* Values */}
-            <section className={`py-24 ${theme === 'dark' ? 'bg-white/5' : 'bg-black/5'}`}>
+            {/* <section className={`py-24 ${theme === 'dark' ? 'bg-white/5' : 'bg-black/5'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -240,10 +240,10 @@ export function AboutPage({ theme, onNavigate }) {
                         })}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Leadership Team */}
-            <section className="py-24">
+            {/* <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -288,10 +288,10 @@ export function AboutPage({ theme, onNavigate }) {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Timeline */}
-            <section className={`py-24 ${theme === 'dark' ? 'bg-white/5' : 'bg-black/5'}`}>
+            {/*<section className={`py-24 ${theme === 'dark' ? 'bg-white/5' : 'bg-black/5'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -334,7 +334,7 @@ export function AboutPage({ theme, onNavigate }) {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section>*/}
 
             {/* CTA Section */}
             <section className="py-24">
