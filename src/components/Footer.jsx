@@ -25,7 +25,7 @@ export function Footer({ theme, onNavigate }) {
             { label: 'About Us', value: 'about' },
             { label: 'Services', value: 'services' },
             { label: 'Products', value: 'products' },
-            { label: 'Pricing', value: 'pricing' },
+
         ],
         resources: [
             { label: 'Blog', value: 'resources' },
@@ -228,7 +228,7 @@ export function Footer({ theme, onNavigate }) {
                                     }`}
                             >
                                 <Mail size={16} className="text-[#4deeea]" />
-                                services@spicarts.ai
+                                info@spicarts.com
                             </a>
                             <a
                                 href="tel:+91 8328015851"

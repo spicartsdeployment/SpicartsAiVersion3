@@ -435,7 +435,7 @@ export function ServicesPage({ theme, onNavigate }) {
                                 >
                                     Request a Demo
                                 </button>
-                                <button
+                                {/* <button
                                     onClick={() => handleNavigatetoTop('/pricing')}
                                     className={`px-10 py-5 rounded-2xl transition-all duration-300 text-lg ${theme === 'dark'
                                         ? 'bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20'
@@ -443,7 +443,7 @@ export function ServicesPage({ theme, onNavigate }) {
                                         }`}
                                 >
                                     View Pricing
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </motion.div>

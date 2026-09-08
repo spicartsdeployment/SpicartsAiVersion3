@@ -524,7 +524,7 @@ function DesktopDevelopmentPage({ theme, onNavigate }) {
               >
                 Request Consultation
               </button>
-
+              {/* 
               <button
                 onClick={() => onNavigate('pricing')}
                 className={`px-10 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
@@ -538,7 +538,7 @@ function DesktopDevelopmentPage({ theme, onNavigate }) {
                 }}
               >
                 View Pricing
-              </button>
+              </button> */}
             </div>
           </motion.div>
         </div>

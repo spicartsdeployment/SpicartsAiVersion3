@@ -458,7 +458,7 @@ const response = await agent.speak({
                 Get Free API Key
               </button>
 
-              <button
+              {/* <button
                 onClick={() => handleNavigate('pricing')}
                 className={`px-10 py-4 rounded-xl border transition-all duration-300 ${theme === 'dark'
                   ? 'border-white/20 hover:border-[#4deeea]/50 hover:bg-white/5'
@@ -471,7 +471,7 @@ const response = await agent.speak({
                 }}
               >
                 View Pricing
-              </button>
+              </button> */}
             </div>
           </motion.div>
         </div>
